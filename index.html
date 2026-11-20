@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Vocab Studio — Next-Gen 20-Day English App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #050811;
+      --bg-elevated: rgba(15, 23, 42, 0.72);
+      --bg-card: rgba(23, 35, 58, 0.78);
+      --bg-card-hover: rgba(30, 46, 76, 0.92);
+      --border-subtle: rgba(148, 163, 184, 0.14);
+      --border-strong: rgba(56, 189, 248, 0.35);
+      --cyan: #38bdf8;
+      --indigo: #818cf8;
+      --emerald: #34d399;
+      --amber: #fbbf24;
+      --rose: #fb7185;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --shadow-lg: 0 24px 60px -15px rgba(0, 0, 0, 0.65);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Malayalam', sans-serif;
+      background-color: var(--bg-base);
+      background-image:
+        radial-gradient(at 12% 10%, rgba(56, 189, 248, 0.16) 0px, transparent 50%),
+        radial-gradient(at 88% 15%, rgba(129, 140, 248, 0.16) 0px, transparent 50%),
+        radial-gradient(at 50% 95%, rgba(52, 211, 153, 0.10) 0px, transparent 55%);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 20px 14px 40px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 840px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .panel {
+      background: var(--bg-elevated);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* Top Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding: 16px 22px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--cyan), var(--indigo));
+      display: grid;
+      place-items: center;
+      font-size: 1.25rem;
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.28);
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .brand-sub {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip-cyan {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.3);
+      color: #7dd3fc;
+    }
+
+    .chip-emerald {
+      background: rgba(52, 211, 153, 0.12);
+      border-color: rgba(52, 211, 153, 0.3);
+      color: #6ee7b7;
+    }
+
+    /* Buttons */
+    .btn {
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 12px 20px;
+      font-family: inherit;
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.14s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0) scale(0.98); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), #0284c7);
+      color: #041322;
+      box-shadow: 0 10px 24px -6px rgba(56, 189, 248, 0.45);
+    }
+
+    .btn-success {
+      background: linear-gradient(135deg, var(--emerald), #059669);
+      color: #03261b;
+      box-shadow: 0 10px 24px -6px rgba(52, 211, 153, 0.4);
+    }
+
+    .btn-outline {
+      background: rgba(30, 41, 59, 0.55);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--border-strong);
+      background: rgba(30, 41, 59, 0.9);
+    }
+
+    .btn-sm {
+      padding: 8px 13px;
+      font-size: 0.84rem;
+      border-radius: 11px;
+    }
+
+    /* Day Hero & Bento Word Grid */
+    .hero-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .day-kicker {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+    }
+
+    .day-heading {
+      margin: 4px 0 0;
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .word-bento {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .word-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.16s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .word-tile:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.35);
+      background: var(--bg-card-hover);
+    }
+
+    .word-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .word-index {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .speak-mini {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: var(--cyan);
+      border-radius: 8px;
+      padding: 3px 8px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .speak-mini:hover { background: rgba(56, 189, 248, 0.24); }
+
+    .tile-en {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .tile-ml {
+      font-size: 1.04rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+
+    .tile-ex {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+
+    /* Stage Stepper */
+    .stepper {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .step-track {
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.16);
+      overflow: hidden;
+    }
+
+    .step-track.done { background: var(--emerald); }
+    .step-track.active {
+      background: linear-gradient(90deg, var(--cyan), var(--indigo));
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+    }
+
+    .stage-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .stage-title {
+      font-weight: 800;
+      font-size: 1.02rem;
+      color: var(--text-primary);
+    }
+
+    .stage-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px 18px;
+      text-align: center;
+    }
+
+    .target-word {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      margin: 10px 0 6px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 560px) {
+      .options-grid { grid-template-columns: 1fr; }
+      .target-word { font-size: 1.75rem; }
+    }
+
+    .choice-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 16px 14px;
+      border-radius: var(--radius-md);
+      font-family: inherit;
+      font-size: 1.06rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .choice-btn:hover {
+      border-color: var(--cyan);
+      background: rgba(56, 189, 248, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .choice-btn.right {
+      background: rgba(52, 211, 153, 0.2);
+      border-color: var(--emerald);
+      color: #a7f3d0;
+    }
+
+    .choice-btn.wrong {
+      background: rgba(251, 113, 133, 0.2);
+      border-color: var(--rose);
+      color: #fecdd3;
+    }
+
+    .input-field, .textarea-field {
+      width: 100%;
+      margin-top: 14px;
+      background: rgba(9, 14, 26, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-size: 1.1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .input-field:focus, .textarea-field:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.18);
+    }
+
+    .alert-box {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .alert-box.good {
+      display: block;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      color: #6ee7b7;
+    }
+
+    .alert-box.bad {
+      display: block;
+      background: rgba(251, 113, 133, 0.15);
+      border: 1px solid rgba(251, 113, 133, 0.4);
+      color: #fda4af;
+    }
+
+    /* Curriculum Matrix */
+    .curriculum-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .day-node {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .day-node:hover {
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    .day-node.done {
+      border-color: rgba(52, 211, 153, 0.45);
+      background: rgba(52, 211, 153, 0.1);
+    }
+
+    .day-node.now {
+      border-color: var(--cyan);
+      background: rgba(56, 189, 248, 0.14);
+    }
+
+    /* Certificate Card */
+    .cert-frame {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(24, 35, 58, 0.96));
+      border: 2px solid rgba(251, 191, 36, 0.65);
+      border-radius: var(--radius-xl);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .cert-badge {
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      color: var(--amber);
+      text-transform: uppercase;
+    }
+
+    .cert-heading {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #fde68a;
+      margin: 8px 0;
+    }
+
+    .cert-recipient {
+      display: inline-block;
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      padding: 6px 26px;
+      margin: 12px 0;
+      border-bottom: 2px dashed rgba(251, 191, 36, 0.55);
+    }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    @media (max-width: 520px) {
+      .metrics-row { grid-template-columns: 1fr; }
+    }
+
+    .metric-box {
+      background: rgba(9, 14, 26, 0.65);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      border-radius: var(--radius-md);
+      padding: 14px 10px;
+    }
+
+    .metric-num {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--cyan);
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    @media print {
+      body { background: #fff; color: #0f172a; padding: 0; }
+      .no-print { display: none !important; }
+      .panel { border: none; box-shadow: none; background: transparent; padding: 0; }
+      .cert-frame { background: #fffbeb; border: 3px solid #b45309; color: #0f172a; box-shadow: none; }
+      .cert-heading { color: #92400e; }
+      .cert-recipient { color: #0f172a; border-bottom-color: #b45309; }
+      .metric-box { background: #fef3c7; border-color: #d97706; }
+      .metric-num { color: #0369a1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="panel header no-print">
+      <div class="brand-wrap">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <div class="brand-name">Daily Vocab Studio</div>
+          <div class="brand-sub">20-Day Smart Everyday English</div>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <span class="chip chip-cyan" id="headerDay">ദിവസം 1 / 20</span>
+        <span class="chip chip-emerald" id="headerScore">0 / 200 വാക്കുകൾ</span>
+        <button class="btn btn-outline btn-sm" onclick="openCurriculum()">സിലബസ്</button>
+        <button class="btn btn-outline btn-sm" onclick="openCertificate()">സർട്ടിഫിക്കറ്റ്</button>
+      </div>
+    </header>
+
+    <main id="appViewport" class="panel"></main>
+  </div>
+
+  <script>
+    const CURRICULUM = [
+      { title: "ദിവസം 1: വീടും അടിസ്ഥാന കാര്യങ്ങളും", words: [
+        { en: "house", ml: "വീട്", alt: ["ഭവന", "ഇല്ലം", "വീട"], ex: "This is my house." },
+        { en: "door", ml: "വാതിൽ", alt: ["കവാടം", "വാതില"], ex: "Please open the door." },
+        { en: "window", ml: "ജനൽ", alt: ["ജനാല", "കിളിവാതിൽ"], ex: "Close the window." },
+        { en: "room", ml: "മുറി", alt: ["അറ", "റൂം"], ex: "My room is clean." },
+        { en: "water", ml: "വെള്ളം", alt: ["ജലം", "വെള്ള"], ex: "Drink clean water." },
+        { en: "food", ml: "ഭക്ഷണം", alt: ["ആഹാരം", "ഊണ്", "ഭക്ഷണ"], ex: "The food is ready." },
+        { en: "rice", ml: "ചോറ് / അരി", alt: ["ചോറ", "അരി", "നെല്ല്"], ex: "We eat rice every day." },
+        { en: "milk", ml: "പാൽ", alt: ["പാല", "ക്ഷീരം"], ex: "I drink warm milk." },
+        { en: "bread", ml: "റൊട്ടി / ബ്രഡ്", alt: ["റൊട്ടി", "ബ്രഡ്", "അപ്പം"], ex: "She eats bread." },
+        { en: "salt", ml: "ഉപ്പ്", alt: ["ഉപ്പ", "ലവണം"], ex: "Add a little salt." }
+      ]},
+      { title: "ദിവസം 2: അടുക്കളയും പാനീയങ്ങളും", words: [
+        { en: "sugar", ml: "പഞ്ചസാര", alt: ["മധുരം", "പഞ്ചാര"], ex: "Do you want sugar?" },
+        { en: "tea", ml: "ചായ", alt: ["തേയില"], ex: "Let us drink tea." },
+        { en: "coffee", ml: "കാപ്പി", alt: ["കോഫി"], ex: "He likes hot coffee." },
+        { en: "plate", ml: "പ്ലേറ്റ് / പാത്രം", alt: ["പ്ലേറ്റ്", "പാത്രം", "തളിക"], ex: "Put it on the plate." },
+        { en: "cup", ml: "കപ്പ്", alt: ["കപ്പ", "കോപ്പ"], ex: "A cup of tea, please." },
+        { en: "spoon", ml: "സ്പൂൺ", alt: ["സ്പൂണ"], ex: "Give me a spoon." },
+        { en: "knife", ml: "കത്തി", alt: ["പിച്ചാത്തി"], ex: "Be careful with the knife." },
+        { en: "bottle", ml: "കുപ്പി", alt: ["ബോട്ടിൽ"], ex: "Fill the water bottle." },
+        { en: "kitchen", ml: "അടുക്കള", alt: ["പാചകപ്പുര"], ex: "Mother is in the kitchen." },
+        { en: "breakfast", ml: "പ്രഭാതഭക്ഷണം", alt: ["രാവിലത്തെ ഭക്ഷണം", "പ്രാതൽ"], ex: "Have your breakfast." }
+      ]},
+      { title: "ദിവസം 3: വീട്ടിലെ സാധനങ്ങൾ", words: [
+        { en: "chair", ml: "കസേര", alt: ["ഇരിപ്പിടം"], ex: "Sit on the chair." },
+        { en: "table", ml: "മേശ", alt: ["ടേബിൾ"], ex: "The book is on the table." },
+        { en: "bed", ml: "കട്ടിൽ / കിടക്ക", alt: ["കട്ടിൽ", "കിടക്ക", "ബെഡ്"], ex: "Go to bed early." },
+        { en: "pillow", ml: "തലയിണ", alt: ["തലയണ"], ex: "This pillow is soft." },
+        { en: "blanket", ml: "പുതപ്പ്", alt: ["കമ്പിളി", "പുതപ്പ"], ex: "Take a warm blanket." },
+        { en: "lamp", ml: "വിളക്ക്", alt: ["ദീപം", "ലൈറ്റ്", "വിളക്ക"], ex: "Turn on the lamp." },
+        { en: "clock", ml: "ക്ലോക്ക്", alt: ["ഘടികാരം", "വാച്ച്"], ex: "Look at the clock." },
+        { en: "mirror", ml: "കണ്ണാടി", alt: ["ദർപ്പണം"], ex: "She looked in the mirror." },
+        { en: "key", ml: "താക്കോൽ", alt: ["ചാവി", "താക്കോല"], ex: "Where is the house key?" },
+        { en: "lock", ml: "പൂട്ട്", alt: ["താഴ്", "പൂട്ട"], ex: "Check the door lock." }
+      ]},
+      { title: "ദിവസം 4: വൃത്തിയും നിത്യോപയോഗ സാധനങ്ങളും", words: [
+        { en: "bag", ml: "ബാഗ്", alt: ["സഞ്ചി", "ബാഗ"], ex: "Carry your bag." },
+        { en: "towel", ml: "തോർത്ത് / ടവൽ", alt: ["തോർത്ത്", "ടവൽ", "തുവർത്ത്"], ex: "Use a clean towel." },
+        { en: "soap", ml: "സോപ്പ്", alt: ["സോപ്പ"], ex: "Wash hands with soap." },
+        { en: "brush", ml: "ബ്രഷ്", alt: ["ബ്രഷ"], ex: "Brush your teeth daily." },
+        { en: "broom", ml: "ചൂൽ", alt: ["ചൂല", "അടിച്ചുവാരി"], ex: "Sweep with a broom." },
+        { en: "bucket", ml: "ബക്കറ്റ്", alt: ["തൊട്ടി"], ex: "The bucket is full." },
+        { en: "wall", ml: "ചുമർ", alt: ["ഭിത്തി", "മതിൽ"], ex: "Paint the wall white." },
+        { en: "floor", ml: "തറ", alt: ["നിലം"], ex: "Clean the floor." },
+        { en: "roof", ml: "മേൽക്കൂര", alt: ["കൂര"], ex: "The roof is strong." },
+        { en: "garden", ml: "പൂന്തോട്ടം", alt: ["തോട്ടം"], ex: "Flowers grow in the garden." }
+      ]},
+      { title: "ദിവസം 5: കുടുംബവും ബന്ധങ്ങളും", words: [
+        { en: "mother", ml: "അമ്മ", alt: ["മാതാവ്", "ഉമ്മ"], ex: "I love my mother." },
+        { en: "father", ml: "അച്ഛൻ", alt: ["പിതാവ്", "ഉപ്പ"], ex: "My father works hard." },
+        { en: "brother", ml: "സഹോദരൻ", alt: ["ചേട്ടൻ", "അനിയൻ", "സഹോദര"], ex: "He is my brother." },
+        { en: "sister", ml: "സഹോദരി", alt: ["ചേച്ചി", "അനിയത്തി"], ex: "My sister is a teacher." },
+        { en: "son", ml: "മകൻ", alt: ["പുത്രൻ", "മകന"], ex: "Their son is smart." },
+        { en: "daughter", ml: "മകൾ", alt: ["പുത്രി", "മകള"], ex: "Her daughter reads well." },
+        { en: "child", ml: "കുട്ടി", alt: ["ബാലൻ", "പൈതൽ"], ex: "The child is smiling." },
+        { en: "friend", ml: "സുഹൃത്ത്", alt: ["കൂട്ടുകാരൻ", "മിത്രം", "ചങ്ങാതി"], ex: "You are my good friend." },
+        { en: "neighbor", ml: "അയൽവാസി", alt: ["അയൽക്കാരൻ"], ex: "Our neighbor is kind." },
+        { en: "guest", ml: "അതിഥി", alt: ["വിരുന്നുകാരൻ"], ex: "Welcome the guest." }
+      ]},
+      { title: "ദിവസം 6: ശരീരഭാഗങ്ങൾ - 1", words: [
+        { en: "head", ml: "തല", alt: ["ശിരസ്സ്"], ex: "Nod your head." },
+        { en: "eye", ml: "കണ്ണ്", alt: ["കണ്ണ", "നേത്രം"], ex: "Close your eyes." },
+        { en: "ear", ml: "ചെവി", alt: ["കർണ്ണം"], ex: "Listen with your ears." },
+        { en: "nose", ml: "മൂക്ക്", alt: ["മൂക്ക", "നാസിക"], ex: "Breathe through your nose." },
+        { en: "mouth", ml: "വായ", alt: ["വാ", "മുഖം"], ex: "Open your mouth." },
+        { en: "tooth", ml: "പല്ല്", alt: ["പല്ല", "ദന്തം"], ex: "Keep your teeth clean." },
+        { en: "hair", ml: "മുടി", alt: ["കേശം", "തലമുടി"], ex: "Comb your hair." },
+        { en: "face", ml: "മുഖം", alt: ["മുഖ"], ex: "Wash your face." },
+        { en: "neck", ml: "കഴുത്ത്", alt: ["കഴുത്ത", "കണ്ഠം"], ex: "Turn your neck slowly." },
+        { en: "shoulder", ml: "തോൾ", alt: ["തോള", "ചുമൽ"], ex: "Carry the bag on your shoulder." }
+      ]},
+      { title: "ദിവസം 7: ശരീരഭാഗങ്ങൾ - 2", words: [
+        { en: "hand", ml: "കൈ", alt: ["കൈയ്", "കരം"], ex: "Raise your hand." },
+        { en: "finger", ml: "വിരൽ", alt: ["വിരല"], ex: "We have ten fingers." },
+        { en: "leg", ml: "കാൽ", alt: ["കാല"], ex: "My leg hurts a little." },
+        { en: "foot", ml: "പാദം", alt: ["കാൽപാദം", "അടി"], ex: "Put shoes on your feet." },
+        { en: "heart", ml: "ഹൃദയം", alt: ["മനസ്സ്", "ഹൃദയ"], ex: "Speak from your heart." },
+        { en: "stomach", ml: "വയറ്", alt: ["വയർ", "ഉദരം"], ex: "My stomach is full." },
+        { en: "back", ml: "പുറം", alt: ["പിൻഭാഗം", "മുതുക്"], ex: "Sit with a straight back." },
+        { en: "voice", ml: "ശബ്ദം", alt: ["സ്വരം", "ഒച്ച"], ex: "Speak in a clear voice." },
+        { en: "blood", ml: "രക്തം", alt: ["ചോര"], ex: "Donate blood, save lives." },
+        { en: "health", ml: "ആരോഗ്യം", alt: ["സുഖം"], ex: "Health is wealth." }
+      ]},
+      { title: "ദിവസം 8: വസ്ത്രങ്ങളും വ്യക്തിഗത സാധനങ്ങളും", words: [
+        { en: "shirt", ml: "ഷർട്ട്", alt: ["കുപ്പായം"], ex: "Wear a clean shirt." },
+        { en: "pants", ml: "പാന്റ്സ്", alt: ["പാന്റ്", "കാൽശരായി"], ex: "These pants fit well." },
+        { en: "dress", ml: "വസ്ത്രം", alt: ["ഉടുപ്പ്", "വസ്ത്ര"], ex: "That is a nice dress." },
+        { en: "shoes", ml: "ഷൂസ്", alt: ["ഷൂ", "ചെരിപ്പ്"], ex: "Polish your shoes." },
+        { en: "socks", ml: "സോക്സ്", alt: ["കാലുറ"], ex: "Wear clean socks." },
+        { en: "hat", ml: "തൊപ്പി", alt: ["ക്യാപ്പ്"], ex: "Put on your hat." },
+        { en: "belt", ml: "ബെൽറ്റ്", alt: ["അരപ്പട്ട"], ex: "Fasten your belt." },
+        { en: "watch", ml: "വാച്ച്", alt: ["ഘടികാരം"], ex: "Look at my new watch." },
+        { en: "pocket", ml: "പോക്കറ്റ്", alt: ["കീശ"], ex: "Keep the pen in your pocket." },
+        { en: "umbrella", ml: "കുട", alt: ["ഛത്രം"], ex: "Take an umbrella today." }
+      ]},
+      { title: "ദിവസം 9: സമയവും ദിവസങ്ങളും", words: [
+        { en: "morning", ml: "രാവിലെ", alt: ["പ്രഭാതം", "കാലത്ത്"], ex: "Good morning everyone." },
+        { en: "afternoon", ml: "ഉച്ചയ്ക്ക് ശേഷം", alt: ["ഉച്ച", "വൈകുന്നേരം"], ex: "See you this afternoon." },
+        { en: "evening", ml: "വൈകുന്നേരം", alt: ["സന്ധ്യ", "വൈകിട്ട്"], ex: "We walk in the evening." },
+        { en: "night", ml: "രാത്രി", alt: ["രാവ്", "ഇരവ്"], ex: "Sleep well at night." },
+        { en: "today", ml: "ഇന്ന്", alt: ["ഇന്ന"], ex: "Today is a good day." },
+        { en: "tomorrow", ml: "നാളെ", alt: ["നാള"], ex: "I will come tomorrow." },
+        { en: "yesterday", ml: "ഇന്നലെ", alt: ["കഴിഞ്ഞ ദിവസം"], ex: "It rained yesterday." },
+        { en: "week", ml: "ആഴ്ച", alt: ["വാരം"], ex: "Seven days make a week." },
+        { en: "month", ml: "മാസം", alt: ["തിങ്കൾ"], ex: "This month is busy." },
+        { en: "year", ml: "വർഷം", alt: ["കൊല്ലം", "ആണ്ട്"], ex: "Happy new year!" }
+      ]},
+      { title: "ദിവസം 10: പ്രകൃതിയും കാലാവസ്ഥയും", words: [
+        { en: "sun", ml: "സൂര്യൻ", alt: ["വെയിൽ", "ആദിത്യൻ"], ex: "The sun rises in the east." },
+        { en: "moon", ml: "ചന്ദ്രൻ", alt: ["അമ്പിളി", "നിലാവ്"], ex: "The moon shines at night." },
+        { en: "star", ml: "നക്ഷത്രം", alt: ["താരം"], ex: "Look at the bright star." },
+        { en: "sky", ml: "ആകാശം", alt: ["വാനം"], ex: "The sky is blue." },
+        { en: "rain", ml: "മഴ", alt: ["വർഷം"], ex: "I like the cool rain." },
+        { en: "wind", ml: "കാറ്റ്", alt: ["കാറ്റ", "വായു"], ex: "A gentle wind is blowing." },
+        { en: "heat", ml: "ചൂട്", alt: ["ചൂട", "ഉഷ്ണം"], ex: "Drink water in the heat." },
+        { en: "cold", ml: "തണുപ്പ്", alt: ["തണുപ്പ", "ശൈത്യം"], ex: "It is cold outside." },
+        { en: "tree", ml: "മരം", alt: ["വൃക്ഷം"], ex: "Plant a tree today." },
+        { en: "flower", ml: "പൂവ്", alt: ["പുഷ്പം", "പൂ"], ex: "This flower smells sweet." }
+      ]},
+      { title: "ദിവസം 11: യാത്രയും വാഹനങ്ങളും", words: [
+        { en: "road", ml: "റോഡ്", alt: ["വഴി", "പാത"], ex: "Cross the road carefully." },
+        { en: "street", ml: "തെരുവ് / വഴി", alt: ["തെരുവ്", "വഴി", "വീഥി"], ex: "Our street is quiet." },
+        { en: "bus", ml: "ബസ്", alt: ["ബസ്സ്"], ex: "Wait at the bus stop." },
+        { en: "car", ml: "കാർ", alt: ["കാറ"], ex: "Drive the car slowly." },
+        { en: "train", ml: "ട്രെയിൻ", alt: ["തീവണ്ടി", "റെയിൽ"], ex: "The train arrives on time." },
+        { en: "ticket", ml: "ടിക്കറ്റ്", alt: ["ടിക്കറ്റ"], ex: "Buy your bus ticket." },
+        { en: "station", ml: "സ്റ്റേഷൻ", alt: ["നിലയം"], ex: "Reach the station early." },
+        { en: "driver", ml: "ഡ്രൈവർ", alt: ["സാരഥി"], ex: "Thank the bus driver." },
+        { en: "travel", ml: "യാത്ര ചെയ്യുക", alt: ["യാത്ര", "സഞ്ചരിക്കുക", "സഞ്ചരിക്ക"], ex: "We love to travel." },
+        { en: "bridge", ml: "പാലം", alt: ["പാല"], ex: "Walk across the bridge." }
+      ]},
+      { title: "ദിവസം 12: പ്രധാന സ്ഥലങ്ങൾ", words: [
+        { en: "market", ml: "മാർക്കറ്റ് / ചന്ത", alt: ["മാർക്കറ്റ്", "ചന്ത", "അങ്ങാടി"], ex: "Buy vegetables from the market." },
+        { en: "shop", ml: "കട", alt: ["പീടിക", "സ്റ്റോർ"], ex: "The shop opens at nine." },
+        { en: "school", ml: "സ്കൂൾ", alt: ["വിദ്യാലയം", "പള്ളിക്കൂടം"], ex: "Children go to school." },
+        { en: "hospital", ml: "ആശുപത്രി", alt: ["ആസ്പത്രി"], ex: "The doctor is at the hospital." },
+        { en: "bank", ml: "ബാങ്ക്", alt: ["ബാങ്ക"], ex: "Go to the bank today." },
+        { en: "office", ml: "ഓഫീസ്", alt: ["കാര്യാലയം"], ex: "He is in the office." },
+        { en: "village", ml: "ഗ്രാമം", alt: ["നാട്ടിൻപുറം"], ex: "My village is peaceful." },
+        { en: "city", ml: "നഗരം", alt: ["പട്ടണം", "ടൗൺ"], ex: "The city is very large." },
+        { en: "park", ml: "പാർക്ക്", alt: ["ഉദ്യാനം"], ex: "Kids play in the park." },
+        { en: "library", ml: "വായനശാല", alt: ["ഗ്രന്ഥശാല", "ലൈബ്രറി"], ex: "Read books in the library." }
+      ]},
+      { title: "ദിവസം 13: നിത്യപ്രവൃത്തികൾ - 1", words: [
+        { en: "go", ml: "പോകുക", alt: ["പോവുക", "പോക", "പോവാൻ"], ex: "Let us go home." },
+        { en: "come", ml: "വരുക", alt: ["വരിക", "വരൂ", "വാ", "വരാൻ"], ex: "Please come inside." },
+        { en: "eat", ml: "കഴിക്കുക", alt: ["കഴിക്ക", "തിന്നുക", "തിന്ന"], ex: "Eat healthy food." },
+        { en: "drink", ml: "കുടിക്കുക", alt: ["കുടിക്ക", "പാനം ചെയ്യുക"], ex: "Drink enough water." },
+        { en: "sleep", ml: "ഉറങ്ങുക", alt: ["ഉറങ്ങ", "നിദ്ര"], ex: "Sleep eight hours daily." },
+        { en: "wake", ml: "ഉണരുക", alt: ["ഉണര", "എഴുന്നേൽക്കുക", "എഴുന്നേൽക്ക"], ex: "Wake up early." },
+        { en: "walk", ml: "നടക്കുക", alt: ["നടക്ക", "നടത്തം"], ex: "Walk every morning." },
+        { en: "run", ml: "ഓടുക", alt: ["ഓട", "ഓട്ടം"], ex: "Do not run on the road." },
+        { en: "sit", ml: "ഇരിക്കുക", alt: ["ഇരിക്ക", "ഇരിപ്പ്"], ex: "Please sit down." },
+        { en: "stand", ml: "നിൽക്കുക", alt: ["നിൽക്ക", "നില്ക്കുക"], ex: "Stand in a line." }
+      ]},
+      { title: "ദിവസം 14: നിത്യപ്രവൃത്തികൾ - 2", words: [
+        { en: "open", ml: "തുറക്കുക", alt: ["തുറക്ക", "തുറന്ന"], ex: "Open your book." },
+        { en: "close", ml: "അടയ്ക്കുക", alt: ["അടക്കുക", "അടയ്ക്ക", "പൂട്ടുക"], ex: "Close the gate." },
+        { en: "take", ml: "എടുക്കുക", alt: ["എടുക്ക", "സ്വീകരിക്കുക"], ex: "Take this pen." },
+        { en: "give", ml: "കൊടുക്കുക", alt: ["കൊടുക്ക", "നൽകുക", "നൽക"], ex: "Give me some water." },
+        { en: "buy", ml: "വാങ്ങുക", alt: ["വാങ്ങ", "വാങ്ങിക്കുക"], ex: "Buy fresh fruits." },
+        { en: "sell", ml: "വിൽക്കുക", alt: ["വിൽക്ക", "വില്ക്കുക"], ex: "They sell good books." },
+        { en: "pay", ml: "പണം നൽകുക", alt: ["അടയ്ക്കുക", "കൊടുക്കുക", "പണം കൊടുക്കുക"], ex: "Pay at the counter." },
+        { en: "send", ml: "അയക്കുക", alt: ["അയയ്ക്കുക", "അയക്ക"], ex: "Send me a message." },
+        { en: "bring", ml: "കൊണ്ടുവരിക", alt: ["കൊണ്ടുവരുക", "കൊണ്ട് വരിക", "കൊണ്ട് വരുക"], ex: "Bring your notebook." },
+        { en: "keep", ml: "സൂക്ഷിക്കുക", alt: ["സൂക്ഷിക്ക", "വെക്കുക", "വയ്ക്കുക"], ex: "Keep your room tidy." }
+      ]},
+      { title: "ദിവസം 15: പഠനവും ആശയവിനിമയവും", words: [
+        { en: "read", ml: "വായിക്കുക", alt: ["വായിക്ക", "വായന"], ex: "Read a page every day." },
+        { en: "write", ml: "എഴുതുക", alt: ["എഴുത", "എഴുത്ത്"], ex: "Write clearly." },
+        { en: "speak", ml: "സംസാരിക്കുക", alt: ["സംസാരിക്ക", "പറയുക", "മിണ്ടുക"], ex: "Speak English daily." },
+        { en: "listen", ml: "ശ്രദ്ധിച്ചു കേൾക്കുക", alt: ["കേൾക്കുക", "ശ്രദ്ധിക്കുക", "കേൾക്ക"], ex: "Listen carefully." },
+        { en: "look", ml: "നോക്കുക", alt: ["നോക്ക", "കാണുക"], ex: "Look at the board." },
+        { en: "see", ml: "കാണുക", alt: ["കാണ", "ദർശിക്കുക"], ex: "I can see the hills." },
+        { en: "hear", ml: "കേൾക്കുക", alt: ["കേൾക്ക", "ശ്രവിക്കുക"], ex: "Can you hear me?" },
+        { en: "think", ml: "ചിന്തിക്കുക", alt: ["ചിന്തിക്ക", "ആലോചിക്കുക", "ആലോചിക്ക"], ex: "Think before you speak." },
+        { en: "know", ml: "അറിയുക", alt: ["അറിയ", "അറിയാം"], ex: "I know the answer." },
+        { en: "learn", ml: "പഠിക്കുക", alt: ["പഠിക്ക", "പഠനം"], ex: "Learn new words daily." }
+      ]},
+      { title: "ദിവസം 16: ജോലിയും സഹായവും", words: [
+        { en: "want", ml: "ആഗ്രഹിക്കുക / വേണം", alt: ["വേണം", "ആഗ്രഹിക്കുക", "ആഗ്രഹം"], ex: "I want to learn." },
+        { en: "need", ml: "ആവശ്യമുണ്ട്", alt: ["ആവശ്യം", "വേണം"], ex: "We need your help." },
+        { en: "help", ml: "സഹായിക്കുക", alt: ["സഹായം", "സഹായിക്ക"], ex: "Always help others." },
+        { en: "work", ml: "ജോലി ചെയ്യുക", alt: ["ജോലി", "പണി", "പ്രവർത്തിക്കുക"], ex: "Work with honesty." },
+        { en: "play", ml: "കളിക്കുക", alt: ["കളിക്ക", "കളി"], ex: "Children play outside." },
+        { en: "wash", ml: "കഴുകുക", alt: ["കഴുക", "അലക്കുക"], ex: "Wash the fruits well." },
+        { en: "cook", ml: "പാചകം ചെയ്യുക", alt: ["പാചകം", "വെക്കുക"], ex: "He can cook well." },
+        { en: "clean", ml: "വൃത്തിയാക്കുക", alt: ["വൃത്തി", "ശുചിയാക്കുക", "വൃത്തിയാക്ക"], ex: "Clean the desk." },
+        { en: "wait", ml: "കാത്തിരിക്കുക", alt: ["കാത്തിരിക്ക", "നിൽക്കുക", "കാത്തുനിൽക്കുക"], ex: "Please wait a minute." },
+        { en: "ask", ml: "ചോദിക്കുക", alt: ["ചോദിക്ക", "ചോദ്യം"], ex: "Ask if you have doubts." }
+      ]},
+      { title: "ദിവസം 17: ഗുണങ്ങളും വിശേഷണങ്ങളും - 1", words: [
+        { en: "good", ml: "നല്ലത്", alt: ["നല്ല", "നന്മ", "മികച്ച"], ex: "That is a good idea." },
+        { en: "bad", ml: "മോശം", alt: ["ചീത്ത", "മോശമായ"], ex: "Avoid bad habits." },
+        { en: "big", ml: "വലുത്", alt: ["വലിയ", "വലു"], ex: "It is a big house." },
+        { en: "small", ml: "ചെറുത്", alt: ["ചെറിയ", "ചെറു"], ex: "This box is small." },
+        { en: "new", ml: "പുതിയത്", alt: ["പുതിയ", "പുതു"], ex: "I bought a new book." },
+        { en: "old", ml: "പഴയത്", alt: ["പഴയ", "പ്രായമായ"], ex: "This is an old tree." },
+        { en: "fast", ml: "വേഗതയുള്ള", alt: ["വേഗം", "വേഗത്തിൽ", "വേഗ"], ex: "The train is fast." },
+        { en: "slow", ml: "പതുക്കെയുള്ള", alt: ["പതുക്കെ", "സാവധാനം"], ex: "Walk at a slow pace." },
+        { en: "easy", ml: "എളുപ്പമുള്ള", alt: ["എളുപ്പം", "ലളിതമായ"], ex: "English is easy to learn." },
+        { en: "hard", ml: "കഠിനമായ", alt: ["കഠിനം", "ബുദ്ധിമുട്ടുള്ള", "പ്രയാസം"], ex: "Nothing is too hard." }
+      ]},
+      { title: "ദിവസം 18: ഗുണങ്ങളും വിശേഷണങ്ങളും - 2", words: [
+        { en: "dirty", ml: "അഴുക്കുള്ള", alt: ["അഴുക്ക്", "വൃത്തികെട്ട", "അഴുക്ക"], ex: "Wash the dirty clothes." },
+        { en: "full", ml: "നിറഞ്ഞത്", alt: ["നിറഞ്ഞ", "മുഴുവൻ"], ex: "The glass is full." },
+        { en: "empty", ml: "ഒഴിഞ്ഞത്", alt: ["ഒഴിഞ്ഞ", "ശൂന്യമായ", "കാലിയായ"], ex: "The box is empty." },
+        { en: "right", ml: "ശരി / വലത്", alt: ["ശരി", "വലത്", "ശരിയായ"], ex: "Your answer is right." },
+        { en: "wrong", ml: "തെറ്റ്", alt: ["തെറ്റ", "തെറ്റായ"], ex: "That is the wrong way." },
+        { en: "near", ml: "അടുത്ത്", alt: ["സമീപം", "അടുത്ത"], ex: "The shop is near here." },
+        { en: "far", ml: "ദൂരെ", alt: ["അകലെ", "ദൂരം"], ex: "The station is not far." },
+        { en: "early", ml: "നേരത്തെ", alt: ["നേരത്തേ", "വേഗം"], ex: "Arrive early for class." },
+        { en: "late", ml: "വൈകി", alt: ["താമസിച്ച്", "വൈകിയ"], ex: "Do not be late." },
+        { en: "heavy", ml: "ഭാരമുള്ള", alt: ["ഭാരം", "കനമുള്ള"], ex: "This bag is heavy." }
+      ]},
+      { title: "ദിവസം 19: വികാരങ്ങളും അവസ്ഥകളും", words: [
+        { en: "happy", ml: "സന്തോഷമുള്ള", alt: ["സന്തോഷം", "ആനന്ദം"], ex: "I am very happy today." },
+        { en: "sad", ml: "സങ്കടമുള്ള", alt: ["സങ്കടം", "ദുഃഖം"], ex: "Do not feel sad." },
+        { en: "angry", ml: "ദേഷ്യമുള്ള", alt: ["ദേഷ്യം", "കോപം"], ex: "Stay calm, do not get angry." },
+        { en: "tired", ml: "ക്ഷീണിച്ച", alt: ["ക്ഷീണം", "തളർന്ന"], ex: "Rest if you are tired." },
+        { en: "hungry", ml: "വിശക്കുന്ന", alt: ["വിശപ്പ്", "വിശപ്പ"], ex: "I am hungry now." },
+        { en: "thirsty", ml: "ദാഹിക്കുന്ന", alt: ["ദാഹം", "ദാഹ"], ex: "Give water to the thirsty." },
+        { en: "ready", ml: "തയ്യാറായ", alt: ["തയ്യാർ", "സജ്ജം"], ex: "Are you ready to start?" },
+        { en: "busy", ml: "തിരക്കുള്ള", alt: ["തിരക്ക്", "തിരക്ക"], ex: "She is busy right now." },
+        { en: "kind", ml: "ദയയുള്ള", alt: ["ദയ", "കരുണയുള്ള"], ex: "Be kind to everyone." },
+        { en: "strong", ml: "ശക്തമായ", alt: ["ശക്തി", "ബലമുള്ള"], ex: "Be strong and brave." }
+      ]},
+      { title: "ദിവസം 20: നിത്യസംഭാഷണ വാക്കുകൾ", words: [
+        { en: "please", ml: "ദയവായി", alt: ["ദയവ്", "പ്ലീസ്"], ex: "Please help me." },
+        { en: "thanks", ml: "നന്ദി", alt: ["നന്ദി പറയുന്നു"], ex: "Thanks for your time." },
+        { en: "sorry", ml: "ക്ഷമിക്കണം", alt: ["ക്ഷമിക്കുക", "സോറി"], ex: "Sorry for the delay." },
+        { en: "welcome", ml: "സ്വാഗതം", alt: ["സ്വാഗത"], ex: "You are always welcome." },
+        { en: "yes", ml: "അതെ", alt: ["ശരി", "ഉവ്വ്"], ex: "Yes, I understand." },
+        { en: "no", ml: "അല്ല / ഇല്ല", alt: ["അല്ല", "ഇല്ല"], ex: "No, thank you." },
+        { en: "where", ml: "എവിടെ", alt: ["എവിടെയാണ്"], ex: "Where is the market?" },
+        { en: "when", ml: "എപ്പോൾ", alt: ["എപ്പോഴാണ്"], ex: "When will you come?" },
+        { en: "why", ml: "എന്തുകൊണ്ട്", alt: ["എന്തിന്", "എന്തുകൊണ്ട"], ex: "Why are you late?" },
+        { en: "how", ml: "എങ്ങനെ", alt: ["എങ്ങനെയാണ്"], ex: "How are you today?" }
+      ]}
+    ];
+
+    const STORE_KEY = "dvs_pro_20d_v3";
+    let state = JSON.parse(localStorage.getItem(STORE_KEY) || "null") || {
+      currentDay: 0,
+      completedDays: [],
+      learnerName: "പഠിതാവ് (Learner)",
+      totalAnswered: 0,
+      totalCorrect: 0
+    };
+
+    function persist() {
+      localStorage.setItem(STORE_KEY, JSON.stringify(state));
+      syncHeader();
+    }
+
+    function syncHeader() {
+      const mastered = state.completedDays.length * 10;
+      document.getElementById("headerDay").textContent = `ദിവസം ${state.currentDay + 1} / 20`;
+      document.getElementById("headerScore").textContent = `${mastered} / 200 വാക്കുകൾ`;
+    }
+
+    function speakWord(text) {
+      if (!("speechSynthesis" in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-US";
+      utter.rate = 0.92;
+      window.speechSynthesis.speak(utter);
+    }
+
+    let session = {
+      stage: 0,
+      queue: [],
+      idx: 0,
+      streak: 0,
+      maxStreak1: 0,
+      mastered1: new Set(),
+      locked: false
+    };
+
+    function buildDayQueue(dayIdx) {
+      const primary = CURRICULUM[dayIdx].words.map(w => ({ ...w, isReview: false }));
+      if (dayIdx > 0) {
+        const pool = [];
+        for (let d = 0; d < dayIdx; d++) {
+          CURRICULUM[d].words.forEach(w => pool.push({ ...w, isReview: true }));
+        }
+        pool.sort(() => Math.random() - 0.5);
+        return [...primary, ...pool.slice(0, 2)];
+      }
+      return primary;
+    }
+
+    function startDay(dayIdx) {
+      state.currentDay = dayIdx;
+      persist();
+      session.stage = 0;
+      renderView();
+    }
+
+    function launchStage(stageNum) {
+      session.stage = stageNum;
+      session.queue = buildDayQueue(state.currentDay).sort(() => Math.random() - 0.5);
+      session.idx = 0;
+      session.streak = 0;
+      session.maxStreak1 = 0;
+      session.mastered1 = new Set();
+      session.locked = false;
+      renderView();
+    }
+
+    function allWordsPool() {
+      return CURRICULUM.flatMap(d => d.words);
+    }
+
+    function normalizeMalayalam(str) {
+      return (str || "")
+        .trim()
+        .replace(/\s+/g, "")
+        .replace(/[.,!?'"()]/g, "")
+        .replace(/ിക$/g, "ുക")
+        .replace(/വുക$/g, "കുക")
+        .replace(/്$/g, "");
+    }
+
+    function matchesMalayalamMeaning(input, wordObj) {
+      const raw = (input || "").trim();
+      if (!raw) return false;
+      const uNorm = normalizeMalayalam(raw);
+      const variants = [...wordObj.ml.split("/").map(s => s.trim()), ...(wordObj.alt || [])];
+
+      return variants.some(v => {
+        const vNorm = normalizeMalayalam(v);
+        if (!vNorm) return false;
+        if (uNorm === vNorm || raw === v) return true;
+        if (uNorm.length >= 2 && (vNorm.includes(uNorm) || uNorm.includes(vNorm))) return true;
+        const minLen = Math.min(uNorm.length, vNorm.length);
+        if (minLen >= 3 && uNorm.slice(0, 3) === vNorm.slice(0, 3)) return true;
+        return false;
+      });
+    }
+
+    function renderView() {
+      syncHeader();
+      const box = document.getElementById("appViewport");
+      const dayData = CURRICULUM[state.currentDay];
+
+      if (session.stage === 0) {
+        box.innerHTML = `
+          <div class="hero-bar">
+            <div>
+              <div class="day-kicker">DAY ${state.currentDay + 1} OF 20 • VOCABULARY STUDIO</div>
+              <h2 class="day-heading">${dayData.title}</h2>
+            </div>
+            <span class="chip chip-cyan">10 പുതിയ വാക്കുകൾ</span>
+          </div>
+          <p style="color:var(--text-secondary); margin:12px 0 6px; font-size:0.95rem;">
+            ഇന്നത്തെ 10 വാക്കുകളുടെ അർത്ഥവും ഉച്ചാരണവും (<b>Listen</b>) പരിചയപ്പെട്ട ശേഷം <b>OK / തുടങ്ങാം</b> ക്ലിക്ക് ചെയ്യുക.
+          </p>
+          <div class="word-bento">
+            ${dayData.words.map((w, i) => `
+              <div class="word-tile">
+                <div class="word-top">
+                  <span class="word-index">#${String(i + 1).padStart(2, "0")}</span>
+                  <button class="speak-mini" onclick="speakWord('${w.en.replace(/'/g, "\\'")}')">🔊 Listen</button>
+                </div>
+                <div class="tile-en">${w.en}</div>
+                <div class="tile-ml">${w.ml}</div>
+                <div class="tile-ex">"${w.ex}"</div>
+              </div>
+            `).join("")}
+          </div>
+          <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+            <button class="btn btn-primary" onclick="launchStage(1)">OK / പഠിച്ചു, തുടങ്ങാം →</button>
+          </div>
+        `;
+        return;
+      }
+
+      const progressBar = [1, 2, 3, 4, 5]
+        .map(s => `<div class="step-track ${s < session.stage ? "done" : (s === session.stage ? "active" : "")}"></div>`)
+        .join("");
+
+      const activeWord = session.queue[session.idx];
+      const stageLabel = {
+        1: "ഘട്ടം 1 • ഇംഗ്ലീഷ് → മലയാളം തിരഞ്ഞെടുക്കൽ (4 Streak നിർബന്ധം)",
+        2: "ഘട്ടം 2 • മലയാളം → ഇംഗ്ലീഷ് തിരഞ്ഞെടുക്കൽ",
+        3: "ഘട്ടം 3 • മലയാളം അർത്ഥം ടൈപ്പ് ചെയ്യുക",
+        4: "ഘട്ടം 4 • ഇംഗ്ലീഷ് വാക്ക് ടൈപ്പ് ചെയ്യുക",
+        5: "ഘട്ടം 5 • വാക്ക് ഉൾപ്പെടുത്തി വാചകം എഴുതുക"
+      };
+
+      const statusChip = session.stage === 1
+        ? `<span class="chip chip-cyan">Streak: ${session.streak} / 4 • Mastered: ${session.mastered1.size} / ${session.queue.length}</span>`
+        : `<span class="chip">ചോദ്യം ${session.idx + 1} / ${session.queue.length}</span>`;
+
+      let stageBody = "";
+
+      if (session.stage === 1 || session.stage === 2) {
+        const isEnToMl = session.stage === 1;
+        const prompt = isEnToMl ? activeWord.en : activeWord.ml;
+        const answer = isEnToMl ? activeWord.ml : activeWord.en;
+
+        const pool = allWordsPool()
+          .map(w => isEnToMl ? w.ml : w.en)
+          .filter(v => v !== answer)
+          .sort(() => Math.random() - 0.5);
+
+        const choices = [answer, ...new Set(pool)].slice(0, 4).sort(() => Math.random() - 0.5);
+
+        stageBody = `
+          <div class="stage-card">
+            ${activeWord.isReview ? '<span class="chip" style="border-color:rgba(251,191,36,0.45); color:#fde68a;">🔄 മുൻ ദിവസത്തെ റിവിഷൻ</span>' : ''}
+            <div class="target-word">${prompt}</div>
+            ${isEnToMl ? `<button class="speak-mini" style="margin-top:4px;" onclick="speakWord('${activeWord.en.replace(/'/g, "\\'")}')">🔊 ഉച്ചാരണം കേൾക്കുക</button>` : ''}
+            <div style="color:var(--text-secondary); font-size:0.88rem; margin-top:8px;">ശരിയായ ഉത്തരം തിരഞ്ഞെടുക്കുക</div>
+          </div>
+          <div class="options-grid">
+            ${choices.map(opt => `
+              <button class="choice-btn" onclick="onSelectChoice(this, '${opt.replace(/'/g, "\\'")}', '${answer.replace(/'/g, "\\'")}')">${opt}</button>
+            `).join("")}
+          </div>
+          <div id="stageFeedback" class="alert-box"></div>
+        `;
+      } else if (session.stage === 3 || session.stage === 4) {
+        const isMl = session.stage === 3;
+        const prompt = isMl ? activeWord.en : activeWord.ml;
+        const hint = isMl ? "ഏകദേശ മലയാളം അർത്ഥം ടൈപ്പ് ചെയ്യുക (ഉദാ: വരിക / വരുക)..." : "Type the English word...";
+
+        stageBody = `
+          <div class="stage-card">
+            ${activeWord.isReview ? '<span class="chip" style="border-color:rgba(251,191,36,0.45); color:#fde68a;">🔄 റിവിഷൻ വാക്ക്</span>' : ''}
+            <div class="target-word">${prompt}</div>
+            ${isMl ? `<button class="speak-mini" onclick="speakWord('${activeWord.en.replace(/'/g, "\\'")}')">🔊 Listen</button>` : ''}
+          </div>
+          <input type="text" id="typedInput" class="input-field" placeholder="${hint}" onkeydown="if(event.key==='Enter') onSubmitTyped()" autofocus />
+          <div style="margin-top:12px;">
+            <button class="btn btn-primary" onclick="onSubmitTyped()">ഉത്തരം പരിശോധിക്കുക</button>
+          </div>
+          <div id="stageFeedback" class="alert-box"></div>
+        `;
+      } else if (session.stage === 5) {
+        stageBody = `
+          <div class="stage-card">
+            <div style="color:var(--text-secondary); font-size:0.9rem;">ഈ വാക്ക് ഉൾപ്പെടുത്തി ഏതെങ്കിലും ഒരു ചെറിയ വാചകം എഴുതുക:</div>
+            <div class="target-word">${activeWord.en} <span style="font-size:1.25rem; color:var(--cyan);">(${activeWord.ml})</span></div>
+            <button class="speak-mini" onclick="speakWord('${activeWord.ex.replace(/'/g, "\\'")}')">🔊 ഉദാഹരണം കേൾക്കുക</button>
+            <div style="color:var(--text-secondary); font-size:0.84rem; margin-top:8px;">ഉദാഹരണം: <i>${activeWord.ex}</i></div>
+          </div>
+          <textarea id="sentenceInput" rows="2" class="textarea-field" placeholder="Write any simple sentence using '${activeWord.en}'..."></textarea>
+          <div style="margin-top:12px;">
+            <button class="btn btn-success" onclick="onSubmitSentence()">വാചകം സമർപ്പിക്കുക</button>
+          </div>
+          <div id="stageFeedback" class="alert-box"></div>
+        `;
+      }
+
+      box.innerHTML = `
+        <div class="stepper">${progressBar}</div>
+        <div class="stage-meta">
+          <div class="stage-title">${stageLabel[session.stage]}</div>
+          ${statusChip}
+        </div>
+        ${stageBody}
+      `;
+    }
+
+    function onSelectChoice(btn, picked, rightAns) {
+      if (session.locked) return;
+      session.locked = true;
+      state.totalAnswered++;
+      const fb = document.getElementById("stageFeedback");
+      const current = session.queue[session.idx];
+
+      if (picked === rightAns) {
+        state.totalCorrect++;
+        btn.classList.add("right");
+        session.streak++;
+        if (session.stage === 1) {
+          session.mastered1.add(current.en);
+          if (session.streak >= 4) session.maxStreak1 = Math.max(session.maxStreak1, session.streak);
+        }
+        fb.className = "alert-box good";
+        fb.textContent = "ശരിയാണ്! മികച്ച മുന്നേറ്റം.";
+        persist();
+
+        setTimeout(() => {
+          if (session.stage === 1) {
+            const masteredAll = session.mastered1.size >= session.queue.length;
+            const streakOk = session.maxStreak1 >= 4 || session.streak >= 4;
+            if (masteredAll && streakOk) {
+              launchStage(2);
+              return;
+            }
+            const remaining = session.queue.filter(w => !session.mastered1.has(w.en));
+            session.idx = remaining.length > 0
+              ? session.queue.indexOf(remaining[0])
+              : Math.floor(Math.random() * session.queue.length);
+            session.locked = false;
+            renderView();
+          } else {
+            if (session.idx + 1 < session.queue.length) {
+              session.idx++;
+              session.locked = false;
+              renderView();
+            } else {
+              launchStage(3);
+            }
+          }
+        }, 650);
+      } else {
+        btn.classList.add("wrong");
+        session.streak = 0;
+        fb.className = "alert-box bad";
+        fb.textContent = `ശരിയായ ഉത്തരം: ${rightAns}`;
+        persist();
+
+        setTimeout(() => {
+          const item = session.queue.splice(session.idx, 1)[0];
+          session.queue.push(item);
+          if (session.stage === 1) session.idx = 0;
+          session.locked = false;
+          renderView();
+        }, 1100);
+      }
+    }
+
+    function onSubmitTyped() {
+      if (session.locked) return;
+      const raw = (document.getElementById("typedInput").value || "").trim();
+      if (!raw) return;
+      const current = session.queue[session.idx];
+      const fb = document.getElementById("stageFeedback");
+      state.totalAnswered++;
+
+      const valid = session.stage === 3
+        ? matchesMalayalamMeaning(raw, current)
+        : raw.toLowerCase() === current.en.toLowerCase();
+
+      const displayAns = session.stage === 3 ? current.ml : current.en;
+      session.locked = true;
+
+      if (valid) {
+        state.totalCorrect++;
+        fb.className = "alert-box good";
+        fb.textContent = `ശരിയാണ്! (${displayAns})`;
+        persist();
+        setTimeout(() => {
+          if (session.idx + 1 < session.queue.length) {
+            session.idx++;
+            session.locked = false;
+            renderView();
+          } else {
+            launchStage(session.stage + 1);
+          }
+        }, 700);
+      } else {
+        fb.className = "alert-box bad";
+        fb.textContent = `അർത്ഥം: ${displayAns} — വീണ്ടും ശ്രമിക്കാം.`;
+        persist();
+        setTimeout(() => {
+          const item = session.queue.splice(session.idx, 1)[0];
+          session.queue.push(item);
+          session.locked = false;
+          renderView();
+        }, 1150);
+      }
+    }
+
+    function onSubmitSentence() {
+      if (session.locked) return;
+      const sent = (document.getElementById("sentenceInput").value || "").trim();
+      const current = session.queue[session.idx];
+      const fb = document.getElementById("stageFeedback");
+
+      const lower = sent.toLowerCase();
+      const target = current.en.toLowerCase();
+      const stem = target.length >= 4 ? target.slice(0, target.length - 1) : target;
+      const containsWord = lower.includes(target) || (stem.length >= 3 && lower.includes(stem));
+
+      if (!containsWord || sent.length < target.length + 2) {
+        fb.className = "alert-box bad";
+        fb.textContent = `'${current.en}' എന്ന വാക്ക് ഉൾപ്പെടുത്തി ഏതെങ്കിലും ഒരു ചെറിയ വാചകം എഴുതുക.`;
+        return;
+      }
+
+      session.locked = true;
+      state.totalAnswered++;
+      state.totalCorrect++;
+      fb.className = "alert-box good";
+      fb.textContent = "അടിപൊളി! വാചകം സ്വീകരിച്ചു.";
+      persist();
+
+      setTimeout(() => {
+        if (session.idx + 1 < session.queue.length) {
+          session.idx++;
+          session.locked = false;
+          renderView();
+        } else {
+          finishDay();
+        }
+      }, 700);
+    }
+
+    function finishDay() {
+      if (!state.completedDays.includes(state.currentDay)) {
+        state.completedDays.push(state.currentDay);
+      }
+      const upcoming = state.currentDay + 1 < 20 ? state.currentDay + 1 : 19;
+      state.currentDay = upcoming;
+      persist();
+
+      const box = document.getElementById("appViewport");
+      const finishedAll = state.completedDays.length >= 20;
+
+      box.innerHTML = `
+        <div style="text-align:center; padding:24px 10px;">
+          <div style="font-size:3.2rem;">🌟</div>
+          <h2 style="margin:10px 0 6px; font-size:1.55rem;">ദിവസത്തെ പരിശീലനം പൂർത്തിയായി!</h2>
+          <p style="color:var(--text-secondary);">പഠിച്ച ആകെ വാക്കുകൾ: <strong style="color:var(--emerald);">${state.completedDays.length * 10} / 200</strong></p>
+          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+            ${finishedAll
+              ? `<button class="btn btn-success" onclick="openCertificate()">🏆 Mastery സർട്ടിഫിക്കറ്റ് കാണുക</button>`
+              : `<button class="btn btn-primary" onclick="startDay(${upcoming})">അടുത്ത ദിവസം (ദിവസം ${upcoming + 1}) →</button>`
+            }
+            <button class="btn btn-outline" onclick="openCurriculum()">20 ദിവസത്തെ സിലബസ്</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function openCurriculum() {
+      syncHeader();
+      const box = document.getElementById("appViewport");
+      box.innerHTML = `
+        <div class="hero-bar">
+          <div>
+            <div class="day-kicker">20-DAY ROADMAP • 200 WORDS</div>
+            <h2 class="day-heading">ദൈനംദിന ഇംഗ്ലീഷ് പഠനപദ്ധതി</h2>
+          </div>
+          <span class="chip chip-emerald">${state.completedDays.length} / 20 പൂർത്തിയായി</span>
+        </div>
+        <div class="curriculum-grid">
+          ${CURRICULUM.map((d, i) => {
+            const isDone = state.completedDays.includes(i);
+            const isNow = state.currentDay === i;
+            return `
+              <div class="day-node ${isDone ? "done" : ""} ${isNow ? "now" : ""}" onclick="startDay(${i})">
+                <div style="font-weight:800; font-size:0.95rem;">ദിവസം ${i + 1}</div>
+                <div style="font-size:0.76rem; color:var(--text-secondary); margin-top:4px;">
+                  ${isDone ? "✅ Completed" : "10 Words"}
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </div>
+        <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="startDay(${state.currentDay})">ദിവസം ${state.currentDay + 1} തുടരുക</button>
+          <button class="btn btn-outline" onclick="openCertificate()">സർട്ടിഫിക്കറ്റ് കാണുക</button>
+        </div>
+      `;
+    }
+
+    function openCertificate() {
+      syncHeader();
+      const box = document.getElementById("appViewport");
+      const doneCount = state.completedDays.length;
+      const wordsCount = doneCount * 10;
+      const accuracy = state.totalAnswered > 0 ? Math.round((state.totalCorrect / state.totalAnswered) * 100) : 100;
+      const certId = `DVS-PRO-${String(wordsCount).padStart(3, "0")}-${new Date().getFullYear()}`;
+      const unlocked = doneCount >= 20;
+
+      box.innerHTML = `
+        <div class="no-print" style="margin-bottom:16px; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <input type="text" id="nameField" class="input-field" value="${state.learnerName}" placeholder="പേര് നൽകുക..." style="margin-top:0; max-width:320px;" oninput="changeLearnerName(this.value)" />
+          <button class="btn btn-success" onclick="window.print()">🖨️ പ്രിന്റ് / PDF സേവ്</button>
+          <button class="btn btn-outline" onclick="startDay(${state.currentDay})">പഠനത്തിലേക്ക്</button>
+        </div>
+        <div class="cert-frame">
+          <div style="font-size:2.5rem;">🏅</div>
+          <div class="cert-badge">CERTIFICATE OF MASTERY</div>
+          <div class="cert-heading">20-Day Everyday English Vocabulary</div>
+          <p style="color:var(--text-secondary); margin:6px 0;">ഈ സർട്ടിഫിക്കറ്റ് അഭിമാനപൂർവ്വം സമർപ്പിക്കുന്നത്</p>
+          <div class="cert-recipient" id="certNameText">${state.learnerName}</div>
+          <p style="max-width:540px; margin:10px auto; line-height:1.65; font-size:0.96rem;">
+            നിത്യജീവിതത്തിൽ ഉപയോഗിക്കുന്ന <strong>200 ഇംഗ്ലീഷ് വാക്കുകളുടെ</strong> 5-ഘട്ട പഠനപദ്ധതി വിജയകരമായി പരിശീലിച്ചതിന്.
+          </p>
+          <div class="metrics-row">
+            <div class="metric-box">
+              <div class="metric-num">${wordsCount} / 200</div>
+              <div class="metric-label">പഠിച്ച വാക്കുകൾ</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-num">${doneCount} / 20</div>
+              <div class="metric-label">പൂർത്തിയായ ദിവസങ്ങൾ</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-num">${accuracy}%</div>
+              <div class="metric-label">കൃത്യത (Accuracy)</div>
+            </div>
+          </div>
+          <div style="font-size:0.8rem; color:var(--text-secondary);">
+            ID: <strong>${certId}</strong> • ${unlocked ? "✅ COMPLETED (200 Words Mastered)" : `പുരോഗതിയിൽ (${20 - doneCount} ദിവസം ബാക്കി)`}
+          </div>
+        </div>
+      `;
+    }
+
+    function changeLearnerName(val) {
+      state.learnerName = val || "പഠിതാവ് (Learner)";
+      persist();
+      const el = document.getElementById("certNameText");
+      if (el) el.textContent = state.learnerName;
+    }
+
+    startDay(state.currentDay);
+  </script>
+</body>
+</html>
