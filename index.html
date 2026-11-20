@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily Vocab Studio — Next-Gen 20-Day English App</title>
+  <title>CV-Daily Vocab Studio — Next-Gen 20-Day English App</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -65,7 +65,6 @@
       box-shadow: var(--shadow-lg);
     }
 
-    /* Top Header */
     .header {
       display: flex;
       justify-content: space-between;
@@ -137,7 +136,6 @@
       color: #6ee7b7;
     }
 
-    /* Buttons */
     .btn {
       border: none;
       border-radius: var(--radius-md);
@@ -185,7 +183,6 @@
       border-radius: 11px;
     }
 
-    /* Day Hero & Bento Word Grid */
     .hero-bar {
       display: flex;
       justify-content: space-between;
@@ -280,10 +277,8 @@
       margin-top: 2px;
     }
 
-    /* Stage Stepper */
     .stepper {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
       gap: 8px;
       margin-bottom: 18px;
     }
@@ -417,7 +412,6 @@
       color: #fda4af;
     }
 
-    /* Curriculum Matrix */
     .curriculum-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
@@ -450,7 +444,6 @@
       background: rgba(56, 189, 248, 0.14);
     }
 
-    /* Certificate Card */
     .cert-frame {
       background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(24, 35, 58, 0.96));
       border: 2px solid rgba(251, 191, 36, 0.65);
@@ -533,7 +526,7 @@
       <div class="brand-wrap">
         <div class="brand-icon">⚡</div>
         <div>
-          <div class="brand-name">Daily Vocab Studio</div>
+          <div class="brand-name">CV-Daily Vocab Studio</div>
           <div class="brand-sub">20-Day Smart Everyday English</div>
         </div>
       </div>
@@ -779,7 +772,7 @@
         { en: "kind", ml: "ദയയുള്ള", alt: ["ദയ", "കരുണയുള്ള"], ex: "Be kind to everyone." },
         { en: "strong", ml: "ശക്തമായ", alt: ["ശക്തി", "ബലമുള്ള"], ex: "Be strong and brave." }
       ]},
-      { title: "ദിവസം 20: നിത്യസംഭാഷണ വാക്കുകൾ", words: [
+      { title: "ദിവസം 20: നിത്യസംഭാഷണ വാക്കുകൾ (അവസാന ഘട്ടം)", words: [
         { en: "please", ml: "ദയവായി", alt: ["ദയവ്", "പ്ലീസ്"], ex: "Please help me." },
         { en: "thanks", ml: "നന്ദി", alt: ["നന്ദി പറയുന്നു"], ex: "Thanks for your time." },
         { en: "sorry", ml: "ക്ഷമിക്കണം", alt: ["ക്ഷമിക്കുക", "സോറി"], ex: "Sorry for the delay." },
@@ -793,7 +786,7 @@
       ]}
     ];
 
-    const STORE_KEY = "dvs_pro_20d_v3";
+    const STORE_KEY = "dvs_pro_20d_v4";
     let state = JSON.parse(localStorage.getItem(STORE_KEY) || "null") || {
       currentDay: 0,
       completedDays: [],
@@ -820,6 +813,11 @@
       utter.lang = "en-US";
       utter.rate = 0.92;
       window.speechSynthesis.speak(utter);
+    }
+
+    // ദിവസം 20-ൽ (അവസാനത്തെ 200-ാം വാക്കിന്റെ ഘട്ടത്തിൽ) മാത്രമേ Sentence Building (ഘട്ടം 5) ഉള്ളൂ
+    function getMaxStagesForDay(dayIdx) {
+      return dayIdx === 19 ? 5 : 4;
     }
 
     let session = {
@@ -898,6 +896,7 @@
       syncHeader();
       const box = document.getElementById("appViewport");
       const dayData = CURRICULUM[state.currentDay];
+      const maxStages = getMaxStagesForDay(state.currentDay);
 
       if (session.stage === 0) {
         box.innerHTML = `
@@ -931,7 +930,8 @@
         return;
       }
 
-      const progressBar = [1, 2, 3, 4, 5]
+      const stageList = Array.from({ length: maxStages }, (_, idx) => idx + 1);
+      const progressBar = stageList
         .map(s => `<div class="step-track ${s < session.stage ? "done" : (s === session.stage ? "active" : "")}"></div>`)
         .join("");
 
@@ -941,7 +941,7 @@
         2: "ഘട്ടം 2 • മലയാളം → ഇംഗ്ലീഷ് തിരഞ്ഞെടുക്കൽ",
         3: "ഘട്ടം 3 • മലയാളം അർത്ഥം ടൈപ്പ് ചെയ്യുക",
         4: "ഘട്ടം 4 • ഇംഗ്ലീഷ് വാക്ക് ടൈപ്പ് ചെയ്യുക",
-        5: "ഘട്ടം 5 • വാക്ക് ഉൾപ്പെടുത്തി വാചകം എഴുതുക"
+        5: "അവസാന ഘട്ടം (200 വാക്കുകൾ പൂർത്തിയാക്കൽ) • വാക്ക് ഉൾപ്പെടുത്തി വാചകം എഴുതുക"
       };
 
       const statusChip = session.stage === 1
@@ -1010,7 +1010,7 @@
       }
 
       box.innerHTML = `
-        <div class="stepper">${progressBar}</div>
+        <div class="stepper" style="grid-template-columns: repeat(${maxStages}, 1fr);">${progressBar}</div>
         <div class="stage-meta">
           <div class="stage-title">${stageLabel[session.stage]}</div>
           ${statusChip}
@@ -1105,7 +1105,12 @@
             session.locked = false;
             renderView();
           } else {
-            launchStage(session.stage + 1);
+            const maxStages = getMaxStagesForDay(state.currentDay);
+            if (session.stage < maxStages) {
+              launchStage(session.stage + 1);
+            } else {
+              finishDay();
+            }
           }
         }, 700);
       } else {
@@ -1237,7 +1242,7 @@
           <p style="color:var(--text-secondary); margin:6px 0;">ഈ സർട്ടിഫിക്കറ്റ് അഭിമാനപൂർവ്വം സമർപ്പിക്കുന്നത്</p>
           <div class="cert-recipient" id="certNameText">${state.learnerName}</div>
           <p style="max-width:540px; margin:10px auto; line-height:1.65; font-size:0.96rem;">
-            നിത്യജീവിതത്തിൽ ഉപയോഗിക്കുന്ന <strong>200 ഇംഗ്ലീഷ് വാക്കുകളുടെ</strong> 5-ഘട്ട പഠനപദ്ധതി വിജയകരമായി പരിശീലിച്ചതിന്.
+            നിത്യജീവിതത്തിൽ ഉപയോഗിക്കുന്ന <strong>200 ഇംഗ്ലീഷ് വാക്കുകളുടെ</strong> പഠനപദ്ധതി വിജയകരമായി പരിശീലിച്ചതിന്.
           </p>
           <div class="metrics-row">
             <div class="metric-box">
@@ -1271,3 +1276,4 @@
   </script>
 </body>
 </html>
+
