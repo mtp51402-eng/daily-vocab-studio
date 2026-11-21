@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LexiPath Kids — 100-Day English & Malayalam Vocabulary</title>
+  <meta name="theme-color" content="#4f46e5" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="LexiPath Kids" />
+  <link id="dynamicManifestLink" rel="manifest" href="" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --bg-app: #f8fafc;
+      --bg-card: #ffffff;
+      --border-card: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --accent-indigo: #4f46e5;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Plus Jakarta Sans", "Noto Sans Malayalam", system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    .lexi-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -14px rgba(15, 23, 42, 0.08);
+    }
+
+    .lexi-btn {
+      border-radius: 10px;
+      font-weight: 700;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+    }
+
+    .lexi-btn:active {
+      transform: scale(0.98);
+    }
+
+    .letter-block {
+      border: 1px solid #cbd5e1;
+      background-color: #f8fafc;
+      color: #0f172a;
+      border-radius: 8px;
+      font-weight: 800;
+      transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease, transform 0.12s ease;
+    }
+
+    .letter-block:hover {
+      border-color: #4f46e5;
+      background-color: #eef2ff;
+      color: #3730a3;
+    }
+
+    .letter-block.active-letter {
+      background-color: #4f46e5;
+      border-color: #4f46e5;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Falling Balloon Word Rescue Arena */
+    .rescue-stage {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 70%, #ecfdf5 100%);
+      touch-action: manipulation;
+    }
+
+    .rescue-baseline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 10px;
+      background: linear-gradient(90deg, #ef4444 0%, #f59e0b 50%, #ef4444 100%);
+      opacity: 0.85;
+    }
+
+    .rescue-balloon {
+      position: absolute;
+      top: 0;
+      min-width: 112px;
+      max-width: 180px;
+      padding: 10px 14px;
+      border-radius: 9999px;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.875rem;
+      line-height: 1.25;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 0 8px 18px -6px rgba(15, 23, 42, 0.28), inset 0 -3px 0 rgba(15, 23, 42, 0.18);
+      border: 1.5px solid rgba(255, 255, 255, 0.65);
+      will-change: transform;
+      z-index: 10;
+      transition: transform 0.14s ease, opacity 0.16s ease;
+    }
+
+    .rescue-balloon.rescued-pop {
+      transform: scale(1.24) !important;
+      opacity: 0 !important;
+    }
+
+    @keyframes bannerFadeIn {
+      from { opacity: 0; transform: translate(-50%, -8px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    .banner-anim {
+      animation: bannerFadeIn 0.18s ease-out forwards;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #lexiCertificateBox {
+        box-shadow: none !important;
+        border: 2px solid #4f46e5 !important;
+      }
+    }
+  </style>
+</head>
+<body class="pb-12 antialiased">
+  <!-- Non-blocking Status Banner -->
+  <div id="lexiBanner" class="no-print hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-md banner-anim">
+    <div id="lexiBannerInner" class="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-slate-900 text-white text-xs sm:text-sm font-semibold shadow-lg">
+      <span id="lexiBannerText">Saved</span>
+      <button id="closeBannerBtn" type="button" class="px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/20 text-xs font-bold">✕</button>
+    </div>
+  </div>
+
+  <!-- PWA Install Modal -->
+  <div id="installHelpModal" class="no-print hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-[1px] flex items-center justify-center p-4">
+    <div class="lexi-card max-w-md w-full p-5 sm:p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="text-base font-extrabold text-slate-900">Install LexiPath Kids</h3>
+        <button id="closeInstallModalBtn" type="button" class="lexi-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs">✕</button>
+      </div>
+      <div class="space-y-2.5 text-xs sm:text-sm text-slate-700">
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+          <strong class="text-slate-900">Android / Chrome:</strong> Menu (⋮) → <strong>Install app</strong> അല്ലെങ്കിൽ <strong>Add to Home screen</strong> തിരഞ്ഞെടുക്കുക.
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+          <strong class="text-slate-900">iPhone / Safari:</strong> Share ബട്ടൺ → <strong>Add to Home Screen</strong> തിരഞ്ഞെടുക്കുക.
+        </div>
+      </div>
+      <button id="confirmInstallModalBtn" type="button" class="lexi-btn w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm">
+        ശരി
+      </button>
+    </div>
+  </div>
+
+  <!-- Firebase Sync Settings Modal -->
+  <div id="firebaseConfigModal" class="no-print hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-[1px] flex items-center justify-center p-4 overflow-y-auto">
+    <div class="lexi-card max-w-lg w-full p-5 sm:p-6 my-auto space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="text-base font-extrabold text-slate-900">Firebase Cloud Sync (Optional)</h3>
+          <p class="text-xs text-slate-500">Realtime Database അല്ലെങ്കിൽ Firestore കോൺഫിഗറേഷൻ നൽകാം.</p>
+        </div>
+        <button id="closeFirebaseModalBtn" type="button" class="lexi-btn px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs">✕</button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label for="fbBackendSelect" class="block font-bold text-slate-700 mb-1">Backend Type</label>
+          <select id="fbBackendSelect" class="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 font-semibold text-slate-900">
+            <option value="rtdb">Realtime Database</option>
+            <option value="firestore">Cloud Firestore</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="fbApiKeyInput" class="block font-bold text-slate-700 mb-1">apiKey</label>
+            <input id="fbApiKeyInput" type="text" placeholder="AIza..." class="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900" />
+          </div>
+          <div>
+            <label for="fbProjectIdInput" class="block font-bold text-slate-700 mb-1">projectId</label>
+            <input id="fbProjectIdInput" type="text" placeholder="your-project-id" class="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900" />
+          </div>
+        </div>
+        <div>
+          <label for="fbDatabaseUrlInput" class="block font-bold text-slate-700 mb-1">databaseURL (for Realtime Database)</label>
+          <input id="fbDatabaseUrlInput" type="text" placeholder="https://your-project-default-rtdb.firebaseio.com" class="w-full px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-slate-900" />
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button id="clearFirebaseBtn" type="button" class="lexi-btn px-3.5 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs">
+          Clear
+        </button>
+        <button id="saveFirebaseBtn" type="button" class="lexi-btn px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm">
+          Save & Connect
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 20 Certificate Modal -->
+  <div id="day20CertModal" class="hidden fixed inset-0 z-50 bg-slate-900/55 flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="max-w-2xl w-full my-auto space-y-3">
+      <div id="lexiCertificateBox" class="lexi-card p-6 sm:p-8 bg-gradient-to-b from-indigo-50/70 via-white to-emerald-50/50 text-center space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-extrabold">
+          <span>🏅</span>
+          <span>Day 20 Completion Certificate</span>
+        </div>
+
+        <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">
+          20 ദിവസത്തെ വൊക്കാബുലറി പൂർത്തീകരണ സർട്ടിഫിക്കറ്റ്
+        </h2>
+
+        <p class="text-xs sm:text-sm text-slate-600 font-medium">
+          ഈ സർട്ടിഫിക്കറ്റ് അഭിമാനത്തോടെ നൽകുന്നത്
+        </p>
+
+        <div id="certStudentName" class="py-2.5 px-5 rounded-xl bg-white border border-indigo-200 text-2xl sm:text-3xl font-extrabold text-indigo-700">
+          പ്രിയ കുട്ടി
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed max-w-xl mx-auto">
+          20 ദിവസങ്ങളിലായി 200 അടിസ്ഥാന ഇംഗ്ലീഷ് വാക്കുകൾ, അക്ഷരങ്ങൾ, ഉച്ചാരണം, നിത്യസംസാര വാക്യങ്ങൾ എന്നിവ കൃത്യമായി പഠിച്ച് പൂർത്തിയാക്കിയതിന് അഭിനന്ദനങ്ങൾ. 100 ദിവസം വരെ വാക്കുകൾ പഠിച്ച് തുടർന്നും മുന്നേറുക!
+        </p>
+
+        <div class="grid grid-cols-3 gap-3 pt-1 max-w-md mx-auto text-xs">
+          <div class="p-3 rounded-xl bg-white border border-slate-200">
+            <div id="certLearnedCount" class="text-base font-extrabold text-indigo-700">0</div>
+            <div class="text-slate-500 font-semibold mt-0.5">പഠിച്ച വാക്കുകൾ</div>
+          </div>
+          <div class="p-3 rounded-xl bg-white border border-slate-200">
+            <div id="certCompletedCount" class="text-base font-extrabold text-emerald-600">0 / 20</div>
+            <div class="text-slate-500 font-semibold mt-0.5">പൂർത്തിയായ ദിനം</div>
+          </div>
+          <div class="p-3 rounded-xl bg-white border border-slate-200">
+            <div id="certIssuedDate" class="text-xs sm:text-sm font-extrabold text-slate-800 pt-0.5"></div>
+            <div class="text-slate-500 font-semibold mt-0.5">തീയതി</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-print flex flex-wrap items-center justify-end gap-2.5">
+        <button id="printCertBtn" type="button" class="lexi-btn px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm">
+          🖨️ Print / Download PDF
+        </button>
+        <button id="closeCertModalBtn" type="button" class="lexi-btn px-4 py-2 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 text-xs sm:text-sm">
+          അടയ്ക്കുക
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Header -->
+  <header class="no-print sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-extrabold text-base shadow-sm">
+          LP
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-extrabold text-slate-900 leading-none">
+            LexiPath Kids
+          </h1>
+          <p class="text-[11px] sm:text-xs text-slate-500 font-medium mt-1">
+            100 ദിവസത്തെ നിത്യോപയോഗ വാക്കുകൾ • Spaced Repetition
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <span id="saveStatusBadge" class="hidden sm:inline-flex items-center px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+          ● Saved locally
+        </span>
+        <button id="openFirebaseBtn" type="button" class="lexi-btn px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs">
+          ☁ Firebase
+        </button>
+        <button id="openCertModalBtn" type="button" class="lexi-btn px-3 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs">
+          🏅 Day 20 Certificate
+        </button>
+        <button id="installPwaBtn" type="button" class="lexi-btn px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs">
+          ⬇ Install
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-5 space-y-5">
+    <!-- Control & Metrics Card -->
+    <section class="no-print lexi-card p-4 sm:p-5 space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-3.5 items-center">
+        <!-- Student Name -->
+        <div class="md:col-span-4">
+          <label for="studentNameInput" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+            കുട്ടിയുടെ പേര് / Learner Name
+          </label>
+          <input
+            id="studentNameInput"
+            type="text"
+            autocomplete="off"
+            placeholder="പേര് നൽകുക..."
+            class="w-full px-3.5 py-2 rounded-lg bg-slate-50 border border-slate-300 text-sm font-semibold text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white"
+          />
+        </div>
+
+        <!-- Day Selector (1-100) -->
+        <div class="md:col-span-4">
+          <label for="dayPicker" class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+            ദിവസം (Day 1–100)
+          </label>
+          <div class="flex items-center gap-1.5">
+            <button id="prevDayBtn" type="button" title="Previous Day" class="lexi-btn px-2.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs">
+              ◀
+            </button>
+            <select
+              id="dayPicker"
+              class="flex-1 px-3 py-2 rounded-lg bg-slate-50 border border-slate-300 text-xs sm:text-sm font-bold text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white"
+            ></select>
+            <button id="nextDayBtn" type="button" title="Next Day" class="lexi-btn px-2.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs">
+              ▶
+            </button>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="md:col-span-4 grid grid-cols-2 gap-2.5">
+          <div class="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200">
+            <div class="text-[11px] font-bold text-amber-800">ഇന്നത്തെ ആവർത്തനം</div>
+            <div id="dueWordsCount" class="text-lg font-extrabold text-amber-950">0</div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-indigo-50/80 border border-indigo-200">
+            <div class="text-[11px] font-bold text-indigo-800">പഠിച്ച വാക്കുകൾ</div>
+            <div id="learnedWordsCount" class="text-lg font-extrabold text-indigo-950">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mode Switch & Spaced Repetition Actions -->
+      <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2.5">
+        <div class="inline-flex rounded-xl bg-slate-100 p-1 border border-slate-200">
+          <button id="tabWordsBtn" type="button" class="lexi-btn px-3.5 py-1.5 bg-white text-indigo-700 shadow-xs text-xs sm:text-sm">
+            📖 Words & Letters
+          </button>
+          <button id="tabBalloonBtn" type="button" class="lexi-btn px-3.5 py-1.5 text-slate-600 hover:text-slate-900 text-xs sm:text-sm">
+            🎈 Balloon Word Rescue
+          </button>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="filterReviewBtn" type="button" class="lexi-btn px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs">
+            🔁 Review Queue Only
+          </button>
+          <button id="startReviewBalloonBtn" type="button" class="lexi-btn px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs">
+            🎈 Review Balloon Rescue
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 1: WORDS & LETTERS CARDS -->
+    <section id="wordsSection" class="space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <h2 id="currentDayTitle" class="text-base sm:text-lg font-extrabold text-slate-900">ദിവസം 1</h2>
+          <p id="srsScheduleHint" class="text-xs text-slate-500 font-medium">
+            +1, +3, +7, +14 ദിവസ ഇടവേളകളിൽ വാക്കുകൾ വീണ്ടും ആവർത്തിക്കും.
+          </p>
+        </div>
+        <button id="completeDayBtn" type="button" class="no-print lexi-btn px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm">
+          ✓ ദിവസം പൂർത്തിയാക്കുക
+        </button>
+      </div>
+
+      <div id="wordsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- VIEW 2: FALLING BALLOON WORD RESCUE -->
+    <section id="balloonSection" class="hidden space-y-4">
+      <div class="lexi-card p-4 sm:p-6 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-base sm:text-lg font-extrabold text-slate-900">Balloon Word Rescue</h2>
+            <p class="text-xs text-slate-500 font-medium">
+              മുകളിലെ വാക്കിന്റെ ശരിയായ ബലൂൺ താഴെ തൊടുന്നതിന് മുൻപ് ക്ലിക്ക് ചെയ്യൂ.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <label for="promptLangPicker" class="text-xs font-bold text-slate-600">Prompt:</label>
+            <select
+              id="promptLangPicker"
+              class="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-300 text-xs font-bold text-slate-800 focus:outline-none focus:border-indigo-600"
+            >
+              <option value="ml">മലയാളം (Malayalam)</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Target Prompt Banner -->
+        <div class="p-4 rounded-xl bg-slate-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-indigo-300 font-bold">Target Word</div>
+            <div id="balloonTargetText" class="text-xl sm:text-2xl font-extrabold mt-0.5">തയ്യാറാകൂ...</div>
+            <span id="balloonReviewBadge" class="hidden inline-flex items-center gap-1 mt-1.5 px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[11px] font-extrabold">
+              🔁 ആവർത്തന വാക്ക് / Review
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2.5 text-xs font-bold shrink-0">
+            <span class="px-3 py-1.5 rounded-lg bg-emerald-600 text-white">
+              Rescued: <strong id="balloonRescuedCount">0</strong>
+            </span>
+            <span class="px-3 py-1.5 rounded-lg bg-rose-600 text-white">
+              Missed: <strong id="balloonMissedCount">0</strong>
+            </span>
+          </div>
+        </div>
+
+        <!-- Falling Balloon Stage -->
+        <div id="rescueStage" class="rescue-stage">
+          <div class="rescue-baseline"></div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-2.5">
+          <div class="flex items-center gap-2">
+            <button id="playBalloonBtn" type="button" class="lexi-btn px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm">
+              ▶ Start Rescue
+            </button>
+            <button id="pauseBalloonBtn" type="button" class="lexi-btn px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 text-xs sm:text-sm">
+              ⏸ Pause
+            </button>
+          </div>
+          <span class="text-xs text-slate-500 font-medium">
+            ശരിയായ ബലൂൺ താഴെ തൊട്ടാൽ മാത്രമേ മിസ്സ് ആയി കണക്കാക്കൂ.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Reset -->
+    <footer class="no-print lexi-card p-4 flex flex-wrap items-center justify-between gap-3">
+      <div class="text-xs text-slate-600 font-medium">
+        നിങ്ങളുടെ പഠന പുരോഗതിയും ആവർത്തന ഷെഡ്യൂളും ഓട്ടോമാറ്റിക് ആയി സേവ് ആകുന്നുണ്ട്.
+      </div>
+      <button id="resetAllBtn" type="button" class="lexi-btn px-3.5 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs">
+        Reset Progress
+      </button>
+    </footer>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+    import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    const STORAGE_KEY = "lexipath_kids_100d_v1";
+    const SRS_DAYS = [1, 3, 7, 14];
+    const BALLOON_PALETTE = ["#4f46e5", "#0284c7", "#059669", "#d97706", "#e11d48", "#7c3aed"];
+
+    // Visual images for everyday objects & actions (Dual Coding)
+    const VISUAL_IMAGES = {
+      "Water": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=640&q=75",
+      "Book": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=640&q=75",
+      "Key": "https://images.unsplash.com/photo-1582139329536-e7284fe1d6df?auto=format&fit=crop&w=640&q=75",
+      "Chair": "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=640&q=75",
+      "Phone": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=640&q=75",
+      "Bag": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=640&q=75",
+      "Window": "https://images.unsplash.com/photo-1509644851169-2acc08aa25b5?auto=format&fit=crop&w=640&q=75",
+      "Clock": "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=640&q=75",
+      "Walk": "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=640&q=75",
+      "Cook": "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=640&q=75",
+      "Apple": "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=640&q=75",
+      "Bread": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=640&q=75",
+      "Cup": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=640&q=75",
+      "Pen": "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&w=640&q=75",
+      "Table": "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=640&q=75",
+      "Car": "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=640&q=75",
+      "Run": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=640&q=75",
+      "Read": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=640&q=75"
+    };
+
+    // Days 1-20: 200 core words
+    const RAW_WORDS = [
+      // Day 1
+      ["Water", "Noun", "വെള്ളം", "Please give me a glass of water.", "ദയവായി എനിക്ക് ഒരു ഗ്ലാസ് വെള്ളം തരൂ."],
+      ["Book", "Noun", "പുസ്തകം", "I read a book before sleeping.", "ഉറങ്ങുന്നതിന് മുൻപ് ഞാൻ ഒരു പുസ്തകം വായിക്കും."],
+      ["Key", "Noun", "താക്കോൽ", "Did you keep the room key?", "റൂമിന്റെ താക്കോൽ നിങ്ങൾ എവിടെയാണ് വെച്ചത്?"],
+      ["Chair", "Noun", "കസേര", "Please sit on this chair.", "ദയവായി ഈ കസേരയിൽ ഇരിക്കൂ."],
+      ["Phone", "Noun", "ഫോൺ", "My phone battery is low.", "എന്റെ ഫോണിന്റെ ബാറ്ററി കുറവാണ്."],
+      ["Bag", "Noun", "ബാഗ്", "Keep your notebook inside the bag.", "നോട്ട്ബുക്ക് ബാഗിനുള്ളിൽ വെക്കുക."],
+      ["Window", "Noun", "ജനൽ", "Open the window for fresh air.", "ശുദ്ധവായുവിനായി ജനൽ തുറക്കുക."],
+      ["Clock", "Noun", "ക്ലോക്ക് / ഘടികാരം", "Look at the wall clock.", "ചുമരിലെ ക്ലോക്കിലേക്ക് നോക്കുക."],
+      ["Door", "Noun", "വാതിൽ", "Close the door gently.", "വാതിൽ പതുക്കെ അടയ്ക്കുക."],
+      ["Money", "Noun", "പണം", "Save a little money every week.", "എല്ലാ ആഴ്ചയും കുറച്ച് പണം സൂക്ഷിക്കുക."],
+      // Day 2
+      ["Apple", "Noun", "ആപ്പിൾ", "Eat a fresh apple in the morning.", "രാവിലെ നല്ലൊരു ആപ്പിൾ കഴിക്കുക."],
+      ["Bread", "Noun", "ബ്രെഡ് / റൊട്ടി", "We bought bread and milk today.", "ഇന്ന് ഞങ്ങൾ ബ്രെഡും പാലും വാങ്ങി."],
+      ["Cup", "Noun", "കപ്പ്", "Pour tea into the cup.", "കപ്പിലേക്ക് ചായ ഒഴിക്കുക."],
+      ["Pen", "Noun", "പേന", "I need a blue pen to sign.", "ഒപ്പിടാൻ എനിക്ക് ഒരു നീല പേന വേണം."],
+      ["Table", "Noun", "മേശ", "Put the files on the table.", "ഫയലുകൾ മേശപ്പുറത്ത് വെക്കുക."],
+      ["Car", "Noun", "കാർ", "They went to town by car.", "അവർ കാറിൽ ടൗണിലേക്ക് പോയി."],
+      ["Road", "Noun", "റോഡ്", "Cross the road carefully.", "റോഡ് ശ്രദ്ധിച്ച് കടക്കുക."],
+      ["House", "Noun", "വീട്", "Our house is near the market.", "ഞങ്ങളുടെ വീട് മാർക്കറ്റിന് അടുത്താണ്."],
+      ["Shirt", "Noun", "ഷർട്ട്", "This cotton shirt is very comfortable.", "ഈ കോട്ടൺ ഷർട്ട് വളരെ സുഖകരമാണ്."],
+      ["Shoe", "Noun", "ഷൂ / ചെരുപ്പ്", "Take off your shoes outside.", "ഷൂ പുറത്ത് അഴിച്ചുവെക്കുക."],
+      // Day 3
+      ["Walk", "Verb", "നടക്കുക", "I walk for twenty minutes every evening.", "എല്ലാ വൈകുന്നേരവും ഞാൻ ഇരുപത് മിനിറ്റ് നടക്കും."],
+      ["Run", "Verb", "ഓടുക", "He runs fast in the morning.", "രാവിലെ അവൻ വേഗത്തിൽ ഓടും."],
+      ["Read", "Verb", "വായിക്കുക", "Read the instructions carefully.", "നിർദ്ദേശങ്ങൾ ശ്രദ്ധാപൂർവ്വം വായിക്കുക."],
+      ["Write", "Verb", "എഴുതുക", "Write down the important points.", "പ്രധാന കാര്യങ്ങൾ എഴുതിവെക്കുക."],
+      ["Speak", "Verb", "സംസാരിക്കുക", "Try to speak English a little every day.", "എല്ലാ ദിവസവും കുറച്ചെങ്കിലും ഇംഗ്ലീഷ് സംസാരിക്കാൻ ശ്രമിക്കുക."],
+      ["Listen", "Verb", "ശ്രദ്ധിച്ചു കേൾക്കുക", "Listen to the audio carefully.", "ഓഡിയോ ശ്രദ്ധിച്ചു കേൾക്കുക."],
+      ["Cook", "Verb", "പാചകം ചെയ്യുക", "Who will cook dinner tonight?", "ഇന്ന് രാത്രി ആരാണ് ഭക്ഷണം പാചകം ചെയ്യുന്നത്?"],
+      ["Clean", "Verb", "വൃത്തിയാക്കുക", "Let us clean the room together.", "നമുക്ക് മുറി ഒരുമിച്ച് വൃത്തിയാക്കാം."],
+      ["Open", "Verb", "തുറക്കുക", "Open the shop at nine in the morning.", "രാവിലെ ഒൻപത് മണിക്ക് കട തുറക്കുക."],
+      ["Close", "Verb", "അടയ്ക്കുക", "Please close the shop at eight.", "ദയവായി എട്ട് മണിക്ക് കട അടയ്ക്കുക."],
+      // Day 4
+      ["Buy", "Verb", "വാങ്ങുക", "I want to buy a new umbrella.", "എനിക്ക് പുതിയൊരു കുട വാങ്ങണം."],
+      ["Sell", "Verb", "വിൽക്കുക", "They sell fresh fruits here.", "ഇവിടെ അവർ പുതിയ പഴങ്ങൾ വിൽക്കുന്നു."],
+      ["Give", "Verb", "കൊടുക്കുക", "Give me five minutes, please.", "ദയവായി എനിക്ക് അഞ്ച് മിനിറ്റ് തരൂ."],
+      ["Take", "Verb", "എടുക്കുക", "Take your umbrella before going out.", "പുറത്തുപോകുന്നതിന് മുൻപ് കുട എടുക്കുക."],
+      ["Ask", "Verb", "ചോദിക്കുക", "Do not hesitate to ask for help.", "സഹായം ചോദിക്കാൻ മടിക്കരുത്."],
+      ["Answer", "Verb", "ഉത്തരം പറയുക", "Answer the question clearly.", "ചോദ്യത്തിന് വ്യക്തമായി ഉത്തരം പറയുക."],
+      ["Wait", "Verb", "കാത്തിരിക്കുക", "Wait here for two minutes.", "രണ്ട് മിനിറ്റ് ഇവിടെ കാത്തിരിക്കൂ."],
+      ["Help", "Verb", "സഹായിക്കുക", "Can you help me carry this box?", "ഈ പെട്ടി എടുക്കാൻ എന്നെ സഹായിക്കാമോ?"],
+      ["Start", "Verb", "തുടങ്ങുക", "Let us start the class now.", "നമുക്ക് ഇപ്പോൾ ക്ലാസ്സ് തുടങ്ങാം."],
+      ["Finish", "Verb", "പൂർത്തിയാക്കുക", "I will finish this work soon.", "ഞാൻ ഈ ജോലി വേഗം പൂർത്തിയാക്കാം."],
+      // Day 5
+      ["Think", "Verb", "ചിന്തിക്കുക", "Think before you make a decision.", "തീരുമാനം എടുക്കുന്നതിന് മുൻപ് ചിന്തിക്കുക."],
+      ["Know", "Verb", "അറിയുക", "Do you know his phone number?", "നിങ്ങൾക്ക് അവന്റെ ഫോൺ നമ്പർ അറിയാമോ?"],
+      ["Understand", "Verb", "മനസ്സിലാക്കുക", "I understand what you mean.", "നിങ്ങൾ ഉദ്ദേശിച്ചത് എനിക്ക് മനസ്സിലാകുന്നുണ്ട്."],
+      ["Remember", "Verb", "ഓർമ്മിക്കുക", "I cannot remember where I kept it.", "ഞാൻ അത് എവിടെയാണ് വെച്ചതെന്ന് ഓർമ്മ വരുന്നില്ല."],
+      ["Forget", "Verb", "മറക്കുക", "Do not forget to lock the gate.", "ഗേറ്റ് പൂട്ടാൻ മറക്കരുത്."],
+      ["Need", "Verb", "ആവശ്യമുണ്ടാകുക", "I need some quiet time to study.", "പഠിക്കാൻ എനിക്ക് കുറച്ച് ശാന്തമായ സമയം ആവശ്യമാണ്."],
+      ["Want", "Verb", "ആഗ്രഹിക്കുക / വേണമെന്നുണ്ടാകുക", "What do you want for breakfast?", "പ്രാതലിന് നിങ്ങൾക്ക് എന്താണ് വേണ്ടത്?"],
+      ["Try", "Verb", "ശ്രമിക്കുക", "Try again, you will get it right.", "വീണ്ടും ശ്രമിക്കുക, നിങ്ങൾക്ക് ശരിയാകും."],
+      ["Find", "Verb", "കണ്ടെത്തുക", "Did you find your lost pen?", "നഷ്ടപ്പെട്ട പേന നിങ്ങൾ കണ്ടെത്തിയോ?"],
+      ["Keep", "Verb", "സൂക്ഷിക്കുക / വെക്കുക", "Keep your documents in a safe place.", "രേഖകൾ സുരക്ഷിതമായ സ്ഥലത്ത് സൂക്ഷിക്കുക."],
+      // Day 6
+      ["Market", "Noun", "മാർക്കറ്റ് / ചന്ത", "I am going to the market.", "ഞാൻ മാർക്കറ്റിലേക്ക് പോകുകയാണ്."],
+      ["School", "Noun", "സ്കൂൾ / വിദ്യാലയം", "The children go to school at eight.", "കുട്ടികൾ എട്ട് മണിക്ക് സ്കൂളിലേക്ക് പോകും."],
+      ["Office", "Noun", "ഓഫീസ്", "She reached the office on time.", "അവൾ കൃത്യസമയത്ത് ഓഫീസിൽ എത്തി."],
+      ["Hospital", "Noun", "ആശുപത്രി", "The hospital is two kilometers away.", "ആശുപത്രി രണ്ട് കിലോമീറ്റർ അകലെയാണ്."],
+      ["Station", "Noun", "സ്റ്റേഷൻ", "Let us meet at the bus station.", "നമുക്ക് ബസ് സ്റ്റേഷനിൽ വെച്ച് കാണാം."],
+      ["Street", "Noun", "തെരുവ് / വഴി", "There are many shops on this street.", "ഈ വഴിയിൽ ധാരാളം കടകളുണ്ട്."],
+      ["Village", "Noun", "ഗ്രാമം", "He lives in a quiet village.", "അവൻ ശാന്തമായ ഒരു ഗ്രാമത്തിലാണ് താമസിക്കുന്നത്."],
+      ["City", "Noun", "നഗരം", "The city is busy during morning hours.", "രാവിലത്തെ സമയത്ത് നഗരത്തിൽ നല്ല തിരക്കായിരിക്കും."],
+      ["Room", "Noun", "മുറി", "Please wait in the next room.", "ദയവായി അടുത്ത മുറിയിൽ കാത്തിരിക്കൂ."],
+      ["Garden", "Noun", "തോട്ടം", "We sit in the garden in the evening.", "വൈകുന്നേരം ഞങ്ങൾ തോട്ടത്തിൽ ഇരിക്കും."],
+      // Day 7
+      ["Morning", "Noun", "രാവിലെ / പ്രഭാതം", "I drink warm water every morning.", "എല്ലാ ദിവസവും രാവിലെ ഞാൻ ചെറുചൂടുവെള്ളം കുടിക്കും."],
+      ["Afternoon", "Noun", "ഉച്ചതിരിഞ്ഞ്", "We have a meeting this afternoon.", "ഇന്ന് ഉച്ചതിരിഞ്ഞ് ഞങ്ങൾക്ക് ഒരു മീറ്റിംഗ് ഉണ്ട്."],
+      ["Evening", "Noun", "വൈകുന്നേരം", "Call me in the evening.", "വൈകുന്നേരം എന്നെ വിളിക്കുക."],
+      ["Night", "Noun", "രാത്രി", "Try to sleep early at night.", "രാത്രി നേരത്തെ ഉറങ്ങാൻ ശ്രമിക്കുക."],
+      ["Today", "Noun", "ഇന്ന്", "Today is a good day to start.", "ഇന്ന് തുടങ്ങാൻ നല്ല ദിവസമാണ്."],
+      ["Tomorrow", "Noun", "നാളെ", "We will check this tomorrow.", "നമുക്ക് ഇത് നാളെ പരിശോധിക്കാം."],
+      ["Yesterday", "Noun", "ഇന്നലെ", "I met him yesterday evening.", "ഇന്നലെ വൈകുന്നേരം ഞാൻ അവനെ കണ്ടു."],
+      ["Week", "Noun", "ആഴ്ച", "Practice these words for one week.", "ഈ വാക്കുകൾ ഒരാഴ്ച പരിശീലിക്കുക."],
+      ["Month", "Noun", "മാസം", "One month of daily practice brings big change.", "ഒരു മാസത്തെ ദിവസേനയുള്ള പരിശീലനം വലിയ മാറ്റം കൊണ്ടുവരും."],
+      ["Time", "Noun", "സമയം", "We do not have much time left.", "നമുക്ക് അധികം സമയം ബാക്കിയില്ല."],
+      // Day 8
+      ["Friend", "Noun", "സുഹൃത്ത്", "A good friend supports you in tough times.", "പ്രയാസഘട്ടങ്ങളിൽ നല്ലൊരു സുഹൃത്ത് കൂടെ നിൽക്കും."],
+      ["Teacher", "Noun", "അധ്യാപകൻ / അധ്യാപിക", "The teacher explained the lesson clearly.", "അധ്യാപകൻ പാഠം വ്യക്തമായി വിശദീകരിച്ചു."],
+      ["Student", "Noun", "വിദ്യാർത്ഥി", "Every student has their own pace.", "ഓരോ വിദ്യാർത്ഥിക്കും അവരവരുടേതായ വേഗതയുണ്ട്."],
+      ["Family", "Noun", "കുടുംബം", "We have dinner together as a family.", "ഞങ്ങൾ കുടുംബമായി ഒരുമിച്ച് അത്താഴം കഴിക്കും."],
+      ["Neighbor", "Noun", "അയൽവാസി", "Our neighbor is very helpful.", "ഞങ്ങളുടെ അയൽവാസി വളരെ സഹായമനസ്കനാണ്."],
+      ["Customer", "Noun", "ഉപഭോക്താവ്", "Treat every customer with respect.", "ഓരോ ഉപഭോക്താവിനെയും ബഹുമാനത്തോടെ പെരുമാറുക."],
+      ["Guest", "Noun", "അതിഥി", "We welcomed the guests warmly.", "ഞങ്ങൾ അതിഥികളെ സ്നേഹത്തോടെ സ്വീകരിച്ചു."],
+      ["Worker", "Noun", "തൊഴിലാളി / ജോലിക്കാരൻ", "Each worker plays an important role.", "ഓരോ തൊഴിലാളിക്കും പ്രധാന പങ്കുണ്ട്."],
+      ["Doctor", "Noun", "ഡോക്ടർ", "Consult a doctor if the fever continues.", "പനി തുടരുകയാണെങ്കിൽ ഒരു ഡോക്ടറെ കാണുക."],
+      ["Driver", "Noun", "ഡ്രൈവർ", "The bus driver stopped at the signal.", "ബസ് ഡ്രൈവർ സിഗ്നലിൽ വാഹനം നിർത്തി."],
+      // Day 9
+      ["Happy", "Adj", "സന്തോഷമുള്ള", "I feel happy when I learn something new.", "പുതിയ കാര്യങ്ങൾ പഠിക്കുമ്പോൾ എനിക്ക് സന്തോഷം തോന്നും."],
+      ["Tired", "Adj", "ക്ഷീണമുള്ള", "I am tired after a long day.", "നീണ്ട ദിവസത്തിന് ശേഷം എനിക്ക് ക്ഷീണമുണ്ട്."],
+      ["Busy", "Adj", "തിരക്കുള്ള", "I am busy right now, I will call later.", "ഞാൻ ഇപ്പോൾ തിരക്കിലാണ്, പിന്നീട് വിളിക്കാം."],
+      ["Ready", "Adj", "തയ്യാറായ", "Are you ready for today's lesson?", "ഇന്നത്തെ പാഠത്തിന് നിങ്ങൾ തയ്യാറാണോ?"],
+      ["Hungry", "Adj", "വിശക്കുന്ന", "I am hungry, let us eat lunch.", "എനിക്ക് വിശക്കുന്നുണ്ട്, നമുക്ക് ഉച്ചഭക്ഷണം കഴിക്കാം."],
+      ["Afraid", "Adj", "ഭയമുള്ള / പേടിയുള്ള", "Do not be afraid of making mistakes.", "തെറ്റുകൾ വരുത്തുന്നതിൽ ഭയപ്പെടേണ്ട."],
+      ["Sure", "Adj", "ഉറപ്പുള്ള", "Are you sure about this answer?", "ഈ ഉത്തരത്തെക്കുറിച്ച് നിങ്ങൾക്ക് ഉറപ്പാണോ?"],
+      ["Free", "Adj", "ഒഴിവുള്ള / സൗജന്യമായ", "Are you free this evening?", "ഇന്ന് വൈകുന്നേരം നിങ്ങൾക്ക് ഒഴിവുണ്ടോ?"],
+      ["Late", "Adj", "വൈകിയ", "Sorry, I am a little late today.", "ക്ഷമിക്കണം, ഇന്ന് ഞാൻ കുറച്ച് വൈകിപ്പോയി."],
+      ["Early", "Adj", "നേരത്തെയുള്ള / അതിരാവിലെയുള്ള", "Wake up early to study peacefully.", "ശാന്തമായി പഠിക്കാൻ അതിരാവിലെ എഴുന്നേൽക്കുക."],
+      // Day 10
+      ["Easy", "Adj", "എളുപ്പമുള്ള", "Daily ten words is an easy target.", "ദിവസവും പത്ത് വാക്കുകൾ എന്നത് എളുപ്പമുള്ള ലക്ഷ്യമാണ്."],
+      ["Hard", "Adj", "കഠിനമായ / ബുദ്ധിമുട്ടുള്ള", "Nothing is hard when you practice daily.", "ദിവസവും പരിശീലിക്കുമ്പോൾ ഒന്നും ബുദ്ധിമുട്ടുള്ളതല്ല."],
+      ["Right", "Adj", "ശരിയായ / വലതുവശം", "You chose the right word.", "നിങ്ങൾ ശരിയായ വാക്കാണ് തിരഞ്ഞെടുത്തത്."],
+      ["Wrong", "Adj", "തെറ്റായ", "It is okay to get a word wrong.", "ഒരു വാക്ക് തെറ്റുന്നതിൽ കുഴപ്പമില്ല."],
+      ["New", "Adj", "പുതിയ", "Learn ten new words every day.", "എല്ലാ ദിവസവും പത്ത് പുതിയ വാക്കുകൾ പഠിക്കുക."],
+      ["Old", "Adj", "പഴയ / പ്രായമായ", "Review old words so you do not forget.", "മറക്കാതിരിക്കാൻ പഴയ വാക്കുകൾ ആവർത്തിക്കുക."],
+      ["Important", "Adj", "പ്രധാനപ്പെട്ട", "Consistency is the most important habit.", "തുടർച്ചയാണ് ഏറ്റവും പ്രധാനപ്പെട്ട ശീലം."],
+      ["Possible", "Adj", "സാധ്യമായ", "Fluency is possible with regular practice.", "പതിവായ പരിശീലനത്തിലൂടെ ഭാഷാപ്രാവീണ്യം സാധ്യമാണ്."],
+      ["Safe", "Adj", "സുരക്ഷിതമായ", "Reach home safe before dark.", "ഇരുട്ടാകുന്നതിന് മുൻപ് സുരക്ഷിതമായി വീട്ടിൽ എത്തുക."],
+      ["Simple", "Adj", "ലളിതമായ", "Keep your sentences simple and clear.", "നിങ്ങളുടെ വാക്യങ്ങൾ ലളിതവും വ്യക്തവുമായി സൂക്ഷിക്കുക."],
+      // Day 11
+      ["Clear", "Adj", "വ്യക്തമായ", "Give a clear reason for your choice.", "നിങ്ങളുടെ തിരഞ്ഞെടുപ്പിന് വ്യക്തമായ കാരണം നൽകുക."],
+      ["Polite", "Adj", "മര്യാദയുള്ള / വിനയമുള്ള", "Always use polite words when speaking.", "സംസാരിക്കുമ്പോൾ എപ്പോഴും മര്യാദയുള്ള വാക്കുകൾ ഉപയോഗിക്കുക."],
+      ["Honest", "Adj", "സത്യസന്ധനായ", "An honest person earns lasting trust.", "സത്യസന്ധനായ വ്യക്തിക്ക് എന്നെന്നും വിശ്വാസ്യത ലഭിക്കും."],
+      ["Patient", "Adj", "ക്ഷമയുള്ള", "Be patient with yourself while learning.", "പഠിക്കുമ്പോൾ നിങ്ങളോട് തന്നെ ക്ഷമ കാണിക്കുക."],
+      ["Careful", "Adj", "ശ്രദ്ധയുള്ള / കരുതലുള്ള", "Be careful with spelling in daily practice.", "ദിവസേനയുള്ള പരിശീലനത്തിൽ സ്പെല്ലിംഗിൽ ശ്രദ്ധാലുവായിരിക്കുക."],
+      ["Helpful", "Adj", "സഹായകരമായ", "Example sentences are very helpful.", "ഉദാഹരണ വാക്യങ്ങൾ വളരെ സഹായകരമാണ്."],
+      ["Quiet", "Adj", "ശാന്തമായ / നിശബ്ദമായ", "A quiet place helps you focus better.", "ശാന്തമായ ഇടം കൂടുതൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കാൻ സഹായിക്കും."],
+      ["Clean", "Adj", "വൃത്തിയുള്ള", "A clean design is pleasant to use.", "വൃത്തിയുള്ള ഡിസൈൻ ഉപയോഗിക്കാൻ സുഖകരമാണ്."],
+      ["Strong", "Adj", "ശക്തമായ", "Your memory grows strong with recall.", "ഓർത്തെടുക്കലിലൂടെ നിങ്ങളുടെ ഓർമ്മശക്തി ശക്തമാകും."],
+      ["Gentle", "Adj", "സൗമ്യമായ / മൃദുവായ", "Speak in a calm and gentle tone.", "ശാന്തവും സൗമ്യവുമായ സ്വരത്തിൽ സംസാരിക്കുക."],
+      // Day 12
+      ["Bright", "Adj", "പ്രകാശമുള്ള / തിളക്കമുള്ള", "The room is bright in the morning.", "രാവിലെ മുറിയിൽ നല്ല വെളിച്ചമായിരിക്കും."],
+      ["Dark", "Adj", "ഇരുണ്ട / ഇരുട്ടുള്ള", "It gets dark quickly after six.", "ആറ് മണിക്ക് ശേഷം വേഗം ഇരുട്ടാകും."],
+      ["Heavy", "Adj", "ഭാരമുള്ള", "This bag is too heavy to carry alone.", "ഈ ബാഗ് ഒറ്റയ്ക്ക് കൊണ്ടുപോകാൻ വളരെ ഭാരമുള്ളതാണ്."],
+      ["Light", "Adj", "ഭാരം കുറഞ്ഞ / വെളിച്ചം", "Carry a light bag for daily travel.", "ദിവസേനയുള്ള യാത്രയ്ക്ക് ഭാരം കുറഞ്ഞ ബാഗ് എടുക്കുക."],
+      ["Sharp", "Adj", "കൂർമ്മതയുള്ള / മൂർച്ചയുള്ള", "Practice keeps your mind sharp.", "പരിശീലനം മനസ്സിനെ കൂർമ്മതയുള്ളതാക്കി നിലനിർത്തും."],
+      ["Smooth", "Adj", "മിനുസമുള്ള / തടസ്സമില്ലാത്ത", "Daily review makes speaking smooth.", "ദിവസേനയുള്ള റിവിഷൻ സംസാരം ഒഴുക്കുള്ളതാക്കും."],
+      ["Sudden", "Adj", "പെട്ടെന്നുള്ള", "There was a sudden change in plan.", "പദ്ധതിയിൽ പെട്ടെന്നൊരു മാറ്റം വന്നു."],
+      ["Common", "Adj", "സാധാരണയായി കാണുന്ന / പൊതുവായ", "These are common words in daily talk.", "നിത്യസംസാരത്തിൽ സാധാരണയായി വരുന്ന വാക്കുകളാണിവ."],
+      ["Useful", "Adj", "പ്രയോജനകരമായ", "Learn words that are useful in real life.", "യഥാർത്ഥ ജീവിതത്തിൽ ഉപകാരപ്പെടുന്ന വാക്കുകൾ പഠിക്കുക."],
+      ["Popular", "Adj", "ജനപ്രിയമായ", "Short daily lessons are very popular.", "ചെറിയ ദൈനംദിന പാഠങ്ങൾ വളരെ ജനപ്രിയമാണ്."],
+      // Day 13
+      ["Plan", "Noun", "പദ്ധതി / ആസൂത്രണം", "A clear plan makes learning stress-free.", "വ്യക്തമായ ഒരു പദ്ധതി പഠനം എളുപ്പമാക്കും."],
+      ["Goal", "Noun", "ലക്ഷ്യം", "Set a small goal for today.", "ഇന്നത്തേക്ക് ചെറിയൊരു ലക്ഷ്യം നിശ്ചയിക്കുക."],
+      ["Habit", "Noun", "ശീലം", "Good habits shape your future.", "നല്ല ശീലങ്ങൾ നിങ്ങളുടെ ഭാവി രൂപപ്പെടുത്തും."],
+      ["Reason", "Noun", "കാരണം", "Tell me the reason for the delay.", "താമസത്തിന്റെ കാരണം പറയുക."],
+      ["Result", "Noun", "ഫലം", "Steady effort gives steady results.", "സ്ഥിരമായ പ്രയത്നം കൃത്യമായ ഫലം നൽകും."],
+      ["Choice", "Noun", "തിരഞ്ഞെടുപ്പ്", "Making a good choice saves time.", "നല്ലൊരു തിരഞ്ഞെടുപ്പ് സമയം ലാഭിക്കും."],
+      ["Chance", "Noun", "അവസരം", "Do not miss a chance to practice.", "പരിശീലിക്കാനുള്ള അവസരം നഷ്ടപ്പെടുത്തരുത്."],
+      ["Advice", "Noun", "ഉപദേശം", "Follow practical advice that works.", "ഫലപ്രദമായ പ്രായോഗിക ഉപദേശങ്ങൾ പിന്തുടരുക."],
+      ["Mistake", "Noun", "തെറ്റ് / പിഴവ്", "Every mistake teaches you something.", "ഓരോ തെറ്റും നിങ്ങൾക്ക് എന്തെങ്കിലും പഠിപ്പിക്കും."],
+      ["Progress", "Noun", "പുരോഗതി", "Track your progress every single day.", "ഓരോ ദിവസവും നിങ്ങളുടെ പുരോഗതി ശ്രദ്ധിക്കുക."],
+      // Day 14
+      ["Improve", "Verb", "മെച്ചപ്പെടുത്തുക", "Reviewing weak words will improve recall.", "പ്രയാസമുള്ള വാക്കുകൾ ആവർത്തിക്കുന്നത് ഓർമ്മ മെച്ചപ്പെടുത്തും."],
+      ["Notice", "Verb", "ശ്രദ്ധിക്കുക / അറിയുക", "Notice how the word is used in context.", "സന്ദർഭത്തിൽ ആ വാക്ക് എങ്ങനെയാണ് ഉപയോഗിച്ചിരിക്കുന്നതെന്ന് ശ്രദ്ധിക്കുക."],
+      ["Decide", "Verb", "തീരുമാനിക്കുക", "Decide your study time for the day.", "ദിവസത്തെ പഠനസമയം തീരുമാനിക്കുക."],
+      ["Explain", "Verb", "വിശദീകരിക്കുക", "Can you explain this in simple words?", "ഇത് ലളിതമായ വാക്കുകളിൽ വിശദീകരിക്കാമോ?"],
+      ["Compare", "Verb", "താരതമ്യം ചെയ്യുക", "Compare your words with last week.", "കഴിഞ്ഞ ആഴ്ചയുമായി നിങ്ങളുടെ വാക്കുകൾ താരതമ്യം ചെയ്യുക."],
+      ["Connect", "Verb", "ബന്ധിപ്പിക്കുക", "Connect new words with real pictures.", "പുതിയ വാക്കുകളെ യഥാർത്ഥ ചിത്രങ്ങളുമായി ബന്ധിപ്പിക്കുക."],
+      ["Suggest", "Verb", "നിർദ്ദേശിക്കുക", "Can you suggest a better time to meet?", "കാണാൻ പറ്റിയ നല്ലൊരു സമയം നിർദ്ദേശിക്കാമോ?"],
+      ["Agree", "Verb", "സമ്മതിക്കുക / യോജിക്കുക", "I agree that daily practice matters most.", "ദിവസേനയുള്ള പരിശീലനമാണ് ഏറ്റവും പ്രധാനമെന്ന് ഞാൻ സമ്മതിക്കുന്നു."],
+      ["Refuse", "Verb", "നിരസിക്കുക / വേണ്ടെന്ന് പറയുക", "Politely refuse tasks you cannot do.", "ചെയ്യാൻ കഴിയാത്ത കാര്യങ്ങൾ മര്യാദയോടെ നിരസിക്കുക."],
+      ["Support", "Verb", "പിന്തുണയ്ക്കുക", "Small wins support big achievements.", "ചെറിയ വിജയങ്ങൾ വലിയ നേട്ടങ്ങളെ പിന്തുണയ്ക്കും."],
+      // Day 15
+      ["Calm", "Adj", "ശാന്തമായ", "Stay calm during balloon rescue.", "ബലൂൺ ഗെയിമിൽ ശാന്തമായിരിക്കുക."],
+      ["Confident", "Adj", "ആത്മവിശ്വാസമുള്ള", "You will feel more confident after Day 10.", "പത്താം ദിവസത്തിന് ശേഷം നിങ്ങൾക്ക് കൂടുതൽ ആത്മവിശ്വാസം തോന്നും."],
+      ["Curious", "Adj", "അറിയാൻ ആകാംക്ഷയുള്ള", "Stay curious about how words work.", "വാക്കുകൾ എങ്ങനെ പ്രവർത്തിക്കുന്നു എന്നതിൽ ആകാംക്ഷ നിലനിർത്തുക."],
+      ["Grateful", "Adj", "നന്ദിയുള്ള / കടപ്പാടുള്ള", "I am grateful for every small step forward.", "മുന്നോട്ടുള്ള ഓരോ ചെറിയ ചുവടിനും ഞാൻ നന്ദിയുള്ളവനാണ്."],
+      ["Proud", "Adj", "അഭിമാനമുള്ള", "Be proud of your daily streak.", "നിങ്ങളുടെ ദൈനംദിന സ്ട്രീക്കിൽ അഭിമാനിക്കുക."],
+      ["Surprised", "Adj", "അത്ഭുതപ്പെട്ട", "You will be surprised how much you remember.", "നിങ്ങൾ എത്രത്തോളം ഓർക്കുന്നു എന്നോർത്ത് നിങ്ങൾ അത്ഭുതപ്പെടും."],
+      ["Worried", "Adj", "ആകുലപ്പെട്ട / വിഷമമുള്ള", "Do not feel worried if a word feels tough.", "ഒരു വാക്ക് പ്രയാസമായി തോന്നിയാലും വിഷമിക്കേണ്ട."],
+      ["Excited", "Adj", "ആവേശമുള്ള", "I am excited to reach the next milestone.", "അടുത്ത നാഴികക്കല്ലിൽ എത്താൻ ഞാൻ ആവേശത്തിലാണ്."],
+      ["Relaxed", "Adj", "റിലാക്സ്ഡ് / അയഞ്ഞ", "A relaxed mind learns faster.", "ശാന്തവും അയഞ്ഞതുമായ മനസ്സ് വേഗം പഠിക്കും."],
+      ["Focused", "Adj", "ശ്രദ്ധ കേന്ദ്രീകരിച്ച", "Stay focused for just five minutes.", "വെറും അഞ്ച് മിനിറ്റ് ശ്രദ്ധ കേന്ദ്രീകരിക്കുക."],
+      // Day 16
+      ["Accurate", "Adj", "കൃത്യമായ", "Accurate spelling matters in writing.", "എഴുത്തിൽ കൃത്യമായ സ്പെല്ലിംഗ് പ്രധാനമാണ്."],
+      ["Practical", "Adj", "പ്രായോഗികമായ", "Practical words help in daily conversation.", "പ്രായോഗിക വാക്കുകൾ നിത്യസംസാരത്തിൽ സഹായിക്കും."],
+      ["Reliable", "Adj", "വിശ്വസനീയമായ", "Build a reliable routine you can keep.", "തുടരാൻ കഴിയുന്ന വിശ്വസനീയമായ ഒരു ശീലം ഉണ്ടാക്കുക."],
+      ["Relevant", "Adj", "പ്രസക്തമായ / അനുയോജ്യമായ", "Focus on words relevant to your daily life.", "നിത്യജീവിതത്തിന് അനുയോജ്യമായ വാക്കുകളിൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കുക."],
+      ["Obvious", "Adj", "വ്യക്തമായ / എളുപ്പം മനസ്സിലാകുന്ന", "The meaning is obvious from the example.", "ഉദാഹരണത്തിൽ നിന്ന് അർത്ഥം വ്യക്തമാണ്."],
+      ["Frequent", "Adj", "ഇടയ്ക്കിടെ സംഭവിക്കുന്ന / പതിവായ", "Frequent review stops forgetting.", "പതിവായ ആവർത്തനം മറവി തടയും."],
+      ["Rare", "Adj", "അപൂർവ്വമായ", "Rare words are fun after basics are strong.", "അടിസ്ഥാനം ഉറച്ചതിന് ശേഷം അപൂർവ്വ വാക്കുകൾ രസകരമാകും."],
+      ["Flexible", "Adj", "വഴക്കമുള്ള / മാറ്റാൻ കഴിയുന്ന", "A flexible schedule fits busy days.", "തിരക്കുള്ള ദിവസങ്ങൾക്ക് അനുയോജ്യമായ സമയക്രമം നല്ലതാണ്."],
+      ["Effective", "Adj", "ഫലപ്രദമായ", "Active recall is an effective study method.", "ഓർത്തെടുക്കൽ പരിശീലനം ഫലപ്രദമായ പഠനരീതിയാണ്."],
+      ["Valuable", "Adj", "വിലപ്പെട്ട", "Your time and attention are valuable.", "നിങ്ങളുടെ സമയവും ശ്രദ്ധയും വിലപ്പെട്ടതാണ്."],
+      // Day 17 (Clean Malayalam meaning without Hindi text)
+      ["Ambitious", "Adj", "വലിയ ലക്ഷ്യങ്ങളുള്ള", "An ambitious learner sets clear monthly targets.", "വലിയ ലക്ഷ്യങ്ങളുള്ള പഠിതാവ് വ്യക്തമായ മാസലക്ഷ്യങ്ങൾ വെക്കും."],
+      ["Consistent", "Adj", "തുടർച്ചയുള്ള / സ്ഥിരതയുള്ള", "Consistent effort beats occasional cramming.", "ഇടയ്ക്കിടെയുള്ള കഠിനപരിശ്രമത്തേക്കാൾ മികച്ചത് സ്ഥിരതയാണ്."],
+      ["Resourceful", "Adj", "ബുദ്ധിപരമായി പരിഹാരം കാണുന്ന", "Resourceful learners use every tool well.", "ഓരോ സൗകര്യവും നന്നായി ഉപയോഗിക്കുന്നവരാണ് സമർത്ഥർ."],
+      ["Thorough", "Adj", "പൂർണ്ണവും സൂക്ഷ്മവുമായ", "Do a thorough check before finishing.", "പൂർത്തിയാക്കുന്നതിന് മുൻപ് പൂർണ്ണമായി പരിശോധിക്കുക."],
+      ["Sincere", "Adj", "ആത്മാർത്ഥമായ", "Sincere practice always shows results.", "ആത്മാർത്ഥമായ പരിശീലനം എപ്പോഴും ഫലം കാണിക്കും."],
+      ["Thoughtful", "Adj", "കരുതലുള്ള / ആഴത്തിൽ ചിന്തിക്കുന്ന", "A thoughtful reply builds goodwill.", "ആഴത്തിൽ ചിന്തിച്ചുള്ള മറുപടി നല്ല ബന്ധങ്ങൾ ഉണ്ടാക്കും."],
+      ["Adaptable", "Adj", "മാറ്റങ്ങളോട് വേഗം പൊരുത്തപ്പെടുന്ന", "Adaptable people grow in any environment.", "ഏത് സാഹചര്യത്തിലും പൊരുത്തപ്പെടുന്നവർ വളരും."],
+      ["Decisive", "Adj", "തീരുമാനമെടുക്കാൻ കഴിവുള്ള", "Be decisive and start your session now.", "തീരുമാനമെടുത്ത് ഇപ്പോൾ തന്നെ സെഷൻ തുടങ്ങുക."],
+      ["Diligent", "Adj", "കഠിനാധ്വാനിയായ", "Diligent learners finish all twenty days.", "കഠിനാധ്വാനികളായവർ ഇരുപത് ദിവസവും പൂർത്തിയാക്കും."],
+      ["Resilient", "Adj", "പ്രതിസന്ധികളെ അതിജീവിക്കുന്ന", "A resilient mind bounces back quickly.", "പ്രതിസന്ധികളെ അതിജീവിക്കുന്ന മനസ്സ് വേഗം ഉണരും."],
+      // Day 18
+      ["Candid", "Adj", "തുറന്നുപറയുന്ന", "Candid feedback helps you improve fast.", "തുറന്ന അഭിപ്രായങ്ങൾ വേഗം മെച്ചപ്പെടാൻ സഹായിക്കും."],
+      ["Eloquent", "Adj", "വാക്ചാതുര്യമുള്ള", "Strong vocabulary makes your speech eloquent.", "നല്ല പദസമ്പത്ത് സംസാരത്തെ വാക്ചാതുര്യമുള്ളതാക്കും."],
+      ["Pragmatic", "Adj", "പ്രായോഗിക ബുദ്ധിയുള്ള", "Take a pragmatic approach to daily study.", "ദൈനംദിന പഠനത്തിൽ പ്രായോഗിക സമീപനം സ്വീകരിക്കുക."],
+      ["Versatile", "Adj", "പലവിധത്തിൽ ഉപകരിക്കുന്ന", "Versatile words fit many situations.", "പല സാഹചര്യങ്ങളിലും ചേരുന്ന വാക്കുകൾ ഉപകാരപ്പെടും."],
+      ["Authentic", "Adj", "യഥാർത്ഥമായ / സ്വാഭാവികമായ", "Speak in an authentic, natural voice.", "സ്വാഭാവികവും യഥാർത്ഥവുമായ ശൈലിയിൽ സംസാരിക്കുക."],
+      ["Concise", "Adj", "ചുരുക്കവും വ്യക്തവുമായ", "A concise answer is easy to follow.", "ചുരുക്കമായ ഉത്തരം മനസ്സിലാക്കാൻ എളുപ്പമാണ്."],
+      ["Genuine", "Adj", "കലർപ്പില്ലാത്ത / സത്യസന്ധമായ", "Genuine interest makes learning enjoyable.", "ആത്മാർത്ഥമായ താല്പര്യം പഠനം രസകരമാക്കും."],
+      ["Vivid", "Adj", "വളരെ വ്യക്തവും തെളിഞ്ഞതുമായ", "Vivid examples stay in memory longer.", "വ്യക്തമായ ഉദാഹരണങ്ങൾ കൂടുതൽ കാലം ഓർമ്മയിൽ നിൽക്കും."],
+      ["Lucid", "Adj", "തെളിഞ്ഞ / ആശയക്കുഴപ്പമില്ലാത്ത", "Clear notes give you a lucid overview.", "വ്യക്തമായ കുറിപ്പുകൾ തെളിഞ്ഞ ധാരണ നൽകും."],
+      ["Nuanced", "Adj", "സൂക്ഷ്മമായ അർത്ഥഭേദങ്ങളുള്ള", "Nuanced expressions add depth to English.", "സൂക്ഷ്മമായ പ്രയോഗങ്ങൾ ഇംഗ്ലീഷിന് ആഴം നൽകും."],
+      // Day 19
+      ["Acquire", "Verb", "നേടിയെടുക്കുക", "You acquire fluency step by step.", "പടിപടിയായി നിങ്ങൾ ഭാഷാപ്രാവീണ്യം നേടിയെടുക്കും."],
+      ["Cultivate", "Verb", "വളർത്തിയെടുക്കുക", "Cultivate curiosity every single day.", "ഓരോ ദിവസവും ആകാംക്ഷ വളർത്തിയെടുക്കുക."],
+      ["Reinforce", "Verb", "വീണ്ടും ഉറപ്പിക്കുക", "Spaced review reinforces what you learned.", "ഇടവിട്ടുള്ള ആവർത്തനം പഠിച്ചത് വീണ്ടും ഉറപ്പിക്കും."],
+      ["Articulate", "Verb", "വ്യക്തമായി അവതരിപ്പിക്കുക", "Articulate your ideas clearly and calmly.", "നിങ്ങളുടെ ആശയങ്ങൾ വ്യക്തമായും ശാന്തമായും അവതരിപ്പിക്കുക."],
+      ["Persevere", "Verb", "സ്ഥിരോത്സാഹത്തോടെ തുടരുക", "Persevere until your goals are met.", "ലക്ഷ്യങ്ങൾ നേടുന്നതുവരെ സ്ഥിരോത്സാഹത്തോടെ തുടരുക."],
+      ["Adapt", "Verb", "പൊരുത്തപ്പെടുക", "Adapt your pace when days get busy.", "ദിവസങ്ങൾ തിരക്കേറുമ്പോൾ വേഗത ക്രമീകരിക്കുക."],
+      ["Clarify", "Verb", "വ്യക്തമാക്കുക", "Always clarify doubts right away.", "സംശയങ്ങൾ അപ്പോൾ തന്നെ വ്യക്തമാക്കുക."],
+      ["Prioritize", "Verb", "മുൻഗണന നൽകുക", "Prioritize your daily ten-word review.", "ദിവസത്തെ പത്ത് വാക്കിന്റെ ആവർത്തനത്തിന് മുൻഗണന നൽകുക."],
+      ["Achieve", "Verb", "നേടുക / കൈവരിക്കുക", "You can achieve great results with steady steps.", "സ്ഥിരമായ ചുവടുകളിലൂടെ വലിയ നേട്ടങ്ങൾ കൈവരിക്കാം."],
+      ["Master", "Verb", "പ്രാവീണ്യം നേടുക", "Master these core words to build confidence.", "ആത്മവിശ്വാസം നേടാൻ ഈ പ്രധാന വാക്കുകളിൽ പ്രാവീണ്യം നേടുക."],
+      // Day 20
+      ["Milestone", "Noun", "നാഴികക്കല്ല്", "Day 20 is a major learning milestone.", "ഇരുപതാം ദിവസം വലിയൊരു പഠന നാഴികക്കല്ലാണ്."],
+      ["Achievement", "Noun", "നേട്ടം", "Completing 200 words is a real achievement.", "200 വാക്കുകൾ പൂർത്തിയാക്കുന്നത് യഥാർത്ഥ നേട്ടമാണ്."],
+      ["Confidence", "Noun", "ആത്മവിശ്വാസം", "Confidence grows as words come naturally.", "വാക്കുകൾ സ്വാഭാവികമായി വരുമ്പോൾ ആത്മവിശ്വാസം വളരും."],
+      ["Fluency", "Noun", "ഒഴുക്ക് / ഭാഷാപ്രാവീണ്യം", "Daily practice builds steady fluency.", "ദിവസേനയുള്ള പരിശീലനം ഭാഷയിൽ ഒഴുക്ക് നൽകും."],
+      ["Discipline", "Noun", "അച്ചടക്കം", "Discipline turns intention into action.", "അച്ചടക്കം ആഗ്രഹത്തെ പ്രവൃത്തിയാക്കി മാറ്റും."],
+      ["Clarity", "Noun", "വ്യക്തത", "Clarity in thought leads to clear speech.", "ചിന്തയിലെ വ്യക്തത വ്യക്തമായ സംസാരത്തിലേക്ക് നയിക്കും."],
+      ["Growth", "Noun", "വളർച്ച", "Every day of study adds to your growth.", "പഠിക്കുന്ന ഓരോ ദിവസവും നിങ്ങളുടെ വളർച്ച കൂട്ടും."],
+      ["Success", "Noun", "വിജയം", "Small daily actions lead to lasting success.", "ചെറിയ ദൈനംദിന പ്രവൃത്തികൾ നിലനിൽക്കുന്ന വിജയത്തിലേക്ക് നയിക്കും."],
+      ["Journey", "Noun", "യാത്ര", "Enjoy the journey of learning English.", "ഇംഗ്ലീഷ് പഠനത്തിന്റെ ഈ യാത്ര ആസ്വദിക്കുക."],
+      ["Mastery", "Noun", "പൂർണ്ണ പ്രാവീണ്യം", "Celebrate your step toward vocabulary mastery!", "പദസമ്പത്തിലെ മികവിലേക്കുള്ള നിങ്ങളുടെ ചുവട് ആഘോഷിക്കൂ!"]
+    ];
+
+    // Everyday conversational words for Days 21-100 (800 words across 80 days)
+    const CONVERSATIONAL_POOL = [
+      ["Hello", "Greeting", "നമസ്കാരം / ഹലോ", "Hello, how are you today?", "ഹലോ, ഇന്ന് നിങ്ങൾക്ക് എങ്ങനെയുണ്ട്?"],
+      ["Please", "Phrase", "ദയവായി", "Please sit down for a minute.", "ഒരു മിനിറ്റ് ദയവായി ഇരിക്കൂ."],
+      ["Thank you", "Phrase", "നന്ദി", "Thank you for helping me.", "എന്നെ സഹായിച്ചതിന് നന്ദി."],
+      ["Sorry", "Phrase", "ക്ഷമിക്കണം", "Sorry for coming late.", "വൈകി വന്നതിന് ക്ഷമിക്കണം."],
+      ["Welcome", "Phrase", "സ്വാഗതം", "Welcome to our home.", "ഞങ്ങളുടെ വീട്ടിലേക്ക് സ്വാഗതം."],
+      ["Good morning", "Phrase", "സുപ്രഭാതം", "Good morning, have a nice day.", "സുപ്രഭാതം, നല്ലൊരു ദിവസം ആശംസിക്കുന്നു."],
+      ["Good night", "Phrase", "ശുഭരാത്രി", "Good night and sleep well.", "ശുഭരാത്രി, നന്നായി ഉറങ്ങുക."],
+      ["Excuse me", "Phrase", "ക്ഷമിക്കണം", "Excuse me, where is the bus stop?", "ക്ഷമിക്കണം, ബസ് സ്റ്റോപ്പ് എവിടെയാണ്?"],
+      ["Yes", "Word", "അതെ / ശരി", "Yes, I understood the word.", "അതെ, എനിക്ക് ആ വാക്ക് മനസ്സിലായി."],
+      ["No", "Word", "അല്ല / വേണ്ട", "No, I do not need it now.", "അല്ല, എനിക്ക് ഇപ്പോൾ അത് വേണ്ട."],
+      ["Come", "Verb", "വരുക", "Come here and look at this.", "ഇവിടെ വന്ന് ഇത് നോക്കൂ."],
+      ["Go", "Verb", "പോകുക", "Let us go home now.", "നമുക്ക് ഇപ്പോൾ വീട്ടിലേക്ക് പോകാം."],
+      ["Sit", "Verb", "ഇരിക്കുക", "Sit quietly and listen.", "ശാന്തമായി ഇരുന്നു കേൾക്കുക."],
+      ["Stand", "Verb", "നിൽക്കുക", "Please stand in a line.", "ദയവായി ഒരു വരിയിൽ നിൽക്കുക."],
+      ["Look", "Verb", "നോക്കുക", "Look at the sky today.", "ഇന്ന് ആകാശത്തേക്ക് നോക്കുക."],
+      ["See", "Verb", "കാണുക", "I can see a bird on the tree.", "മരത്തിൽ ഒരു പക്ഷിയെ എനിക്ക് കാണാം."],
+      ["Hear", "Verb", "കേൾക്കുക", "Can you hear that sound?", "നിങ്ങൾക്ക് ആ ശബ്ദം കേൾക്കാമോ?"],
+      ["Say", "Verb", "പറയുക", "Say the word loudly and clearly.", "ആ വാക്ക് ഉച്ചത്തിലും വ്യക്തമായും പറയുക."],
+      ["Tell", "Verb", "പറയുക / അറിയിക്കുക", "Tell me your name, please.", "ദയവായി നിങ്ങളുടെ പേര് പറയൂ."],
+      ["Show", "Verb", "കാണിക്കുക", "Show me your picture book.", "നിങ്ങളുടെ ചിത്രപുസ്തകം എന്നെ കാണിക്കൂ."],
+      ["Eat", "Verb", "കഴിക്കുക", "Eat healthy food every day.", "എല്ലാ ദിവസവും ആരോഗ്യകരമായ ഭക്ഷണം കഴിക്കുക."],
+      ["Drink", "Verb", "കുടിക്കുക", "Drink enough water daily.", "ദിവസവും ആവശ്യത്തിന് വെള്ളം കുടിക്കുക."],
+      ["Sleep", "Verb", "ഉറങ്ങുക", "Children need enough sleep.", "കുട്ടികൾക്ക് മതിയായ ഉറക്കം ആവശ്യമാണ്."],
+      ["Wake up", "Verb", "ഉണരുക", "I wake up early every day.", "ഞാൻ എല്ലാ ദിവസവും നേരത്തെ ഉണരും."],
+      ["Wash", "Verb", "കഴുകുക", "Wash your hands before eating.", "ഭക്ഷണം കഴിക്കുന്നതിന് മുൻപ് കൈ കഴുകുക."],
+      ["Play", "Verb", "കളിക്കുക", "We play together in the evening.", "വൈകുന്നേരം ഞങ്ങൾ ഒരുമിച്ച് കളിക്കും."],
+      ["Study", "Verb", "പഠിക്കുക", "Study a little every single day.", "ഓരോ ദിവസവും കുറച്ചെങ്കിലും പഠിക്കുക."],
+      ["Learn", "Verb", "പഠിക്കുക / അറിവ് നേടുക", "I love to learn new words.", "പുതിയ വാക്കുകൾ പഠിക്കാൻ എനിക്ക് ഇഷ്ടമാണ്."],
+      ["Draw", "Verb", "വരയ്ക്കുക", "She likes to draw flowers.", "അവൾക്ക് പൂക്കൾ വരയ്ക്കാൻ ഇഷ്ടമാണ്."],
+      ["Sing", "Verb", "പാടുക", "They sing a sweet song.", "അവർ മനോഹരമായ ഒരു പാട്ട് പാടുന്നു."],
+      ["Smile", "Verb", "പുഞ്ചിരിക്കുക", "A warm smile makes everyone happy.", "ഒരു പുഞ്ചിരി എല്ലാവരെയും സന്തോഷിപ്പിക്കും."],
+      ["Laugh", "Verb", "ചിരിക്കുക", "We laugh together at jokes.", "തമാശകൾക്ക് ഞങ്ങൾ ഒരുമിച്ച് ചിരിക്കും."],
+      ["Cry", "Verb", "കരയുക", "Do not cry over small things.", "ചെറിയ കാര്യങ്ങൾക്ക് കരയരുത്."],
+      ["Jump", "Verb", "ചാടുക", "The kid can jump very high.", "കുട്ടിക്ക് വളരെ ഉയരത്തിൽ ചാടാൻ കഴിയും."],
+      ["Climb", "Verb", "കയറുക", "Be careful when you climb stairs.", "പടികൾ കയറുമ്പോൾ ശ്രദ്ധിക്കുക."],
+      ["Push", "Verb", "തള്ളുക", "Push the door gently to open.", "വാതിൽ തുറക്കാൻ പതുക്കെ തള്ളുക."],
+      ["Pull", "Verb", "വലിക്കുക", "Pull the drawer slowly.", "ഡ്രോയർ പതുക്കെ വലിക്കുക."],
+      ["Hold", "Verb", "പിടിക്കുക", "Hold my hand while crossing.", "റോഡ് കടക്കുമ്പോൾ എന്റെ കൈ പിടിക്കുക."],
+      ["Drop", "Verb", "താഴെ ഇടുക", "Do not drop the glass.", "ഗ്ലാസ് താഴെ ഇടരുത്."],
+      ["Pick up", "Verb", "എടുത്തു മാറ്റുക", "Pick up the toys after playing.", "കളിച്ചതിന് ശേഷം കളിപ്പാട്ടങ്ങൾ എടുത്തു മാറ്റുക."]
+    ];
+
+    function buildCurriculum100Days() {
+      const map = {};
+      for (let d = 1; d <= 20; d++) {
+        map[d] = RAW_WORDS.slice((d - 1) * 10, d * 10).map((row, idx) => ({
+          id: `d${d}_w${idx + 1}`,
+          day: d,
+          en: row[0],
+          pos: row[1],
+          ml: row[2],
+          exEn: row[3],
+          exMl: row[4],
+          img: VISUAL_IMAGES[row[0]] || ""
+        }));
+      }
+      for (let d = 21; d <= 100; d++) {
+        const dayList = [];
+        for (let i = 0; i < 10; i++) {
+          const index = (d - 21) * 10 + i;
+          const item = CONVERSATIONAL_POOL[index % CONVERSATIONAL_POOL.length];
+          const cycle = Math.floor(index / CONVERSATIONAL_POOL.length) + 1;
+          dayList.push({
+            id: `d${d}_w${i + 1}`,
+            day: d,
+            en: cycle === 1 ? item[0] : `${item[0]} (${cycle})`,
+            pos: item[1],
+            ml: item[2],
+            exEn: item[3],
+            exMl: item[4],
+            img: VISUAL_IMAGES[item[0]] || ""
+          });
+        }
+        map[d] = dayList;
+      }
+      return map;
+    }
+
+    const CURRICULUM_100 = buildCurriculum100Days();
+    const ALL_1000_WORDS = Object.values(CURRICULUM_100).flat();
+    const WORD_LOOKUP = Object.fromEntries(ALL_1000_WORDS.map((w) => [w.id, w]));
+
+    function getTodayDateStr() {
+      const now = new Date();
+      return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    }
+
+    function addDaysToDateStr(dateStr, days) {
+      const [y, m, d] = (dateStr || getTodayDateStr()).split("-").map(Number);
+      const dt = new Date(y, (m || 1) - 1, d || 1);
+      dt.setDate(dt.getDate() + days);
+      return `${dt.getFullYear()}-${String(dt.getMonth() + 1).padStart(2, "0")}-${String(dt.getDate()).padStart(2, "0")}`;
+    }
+
+    function createInitialState() {
+      return {
+        studentName: "",
+        day: 1,
+        mode: "words", // "words" | "balloon"
+        promptLang: "ml", // "ml" | "en"
+        reviewOnly: false,
+        balloonReviewOnly: false,
+        completedDays: [],
+        srs: {},
+        stats: { rescued: 0, missed: 0 },
+        firebase: {
+          backend: "rtdb",
+          apiKey: "",
+          projectId: "",
+          databaseURL: ""
+        }
+      };
+    }
+
+    let state = loadSavedState();
+    let rtdbRef = null;
+    let firestoreDocRef = null;
+    let deferredInstallPrompt = null;
+    let rescueRunning = false;
+    let rescueRafId = null;
+    let rescueSpawnTimer = null;
+    let activeBalloons = [];
+    let currentTargetWord = null;
+    let prevFrameTime = 0;
+
+    function loadSavedState() {
+      const base = createInitialState();
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return base;
+        const parsed = JSON.parse(raw);
+        return {
+          ...base,
+          ...parsed,
+          day: Math.min(100, Math.max(1, Number(parsed.day) || 1)),
+          completedDays: Array.isArray(parsed.completedDays) ? parsed.completedDays : [],
+          srs: parsed.srs && typeof parsed.srs === "object" ? parsed.srs : {},
+          stats: {
+            rescued: Number(parsed.stats && parsed.stats.rescued) || 0,
+            missed: Number(parsed.stats && parsed.stats.missed) || 0
+          },
+          firebase: {
+            ...base.firebase,
+            ...(parsed.firebase && typeof parsed.firebase === "object" ? parsed.firebase : {})
+          }
+        };
+      } catch (err) {
+        return base;
+      }
+    }
+
+    function saveState(toastMessage = "") {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        const badge = document.getElementById("saveStatusBadge");
+        if (badge) {
+          const timeLabel = new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
+          badge.textContent = `● Saved ${timeLabel}`;
+        }
+      } catch (err) {
+        // Ignore storage error
+      }
+
+      syncToFirebase();
+      if (toastMessage) showBanner(toastMessage);
+    }
+
+    function showBanner(text, isError = false) {
+      const wrap = document.getElementById("lexiBanner");
+      const inner = document.getElementById("lexiBannerInner");
+      const label = document.getElementById("lexiBannerText");
+      if (!wrap || !inner || !label) return;
+      label.textContent = text;
+      inner.className = `flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-white text-xs sm:text-sm font-semibold shadow-lg ${
+        isError ? "bg-rose-600" : "bg-slate-900"
+      }`;
+      wrap.classList.remove("hidden");
+      clearTimeout(showBanner._timer);
+      showBanner._timer = setTimeout(() => wrap.classList.add("hidden"), 2400);
+    }
+
+    function speakText(text, lang = "en-US") {
+      try {
+        if (!("speechSynthesis" in window)) return;
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utter.lang = lang;
+        utter.rate = 0.92;
+        window.speechSynthesis.speak(utter);
+      } catch (err) {
+        // Ignore speech error
+      }
+    }
+
+    function playCue(success = true) {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = success ? "triangle" : "sine";
+        osc.frequency.setValueAtTime(success ? 523 : 210, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(success ? 880 : 140, ctx.currentTime + 0.14);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.16);
+      } catch (err) {
+        // Ignore audio error
+      }
+    }
+
+    // Spaced Repetition (+1, +3, +7, +14 days)
+    function isDueForReview(wordId) {
+      const entry = state.srs[wordId];
+      return Boolean(entry && entry.dueDate && entry.dueDate <= getTodayDateStr());
+    }
+
+    function getDueReviewWords() {
+      const today = getTodayDateStr();
+      return Object.entries(state.srs)
+        .filter(([, entry]) => entry && entry.dueDate && entry.dueDate <= today)
+        .map(([id]) => WORD_LOOKUP[id])
+        .filter(Boolean);
+    }
+
+    function updateWordSrs(wordId, success = true) {
+      const today = getTodayDateStr();
+      const prev = state.srs[wordId] || { count: 0, stage: 0, dueDate: addDaysToDateStr(today, 1) };
+      let nextStage = prev.stage || 0;
+      if (success) {
+        nextStage = Math.min(SRS_DAYS.length - 1, prev.count === 0 ? 0 : nextStage + 1);
+      } else {
+        nextStage = 0;
+      }
+      state.srs[wordId] = {
+        count: (prev.count || 0) + 1,
+        stage: nextStage,
+        lastReviewed: today,
+        dueDate: addDaysToDateStr(today, SRS_DAYS[nextStage])
+      };
+      saveState();
+      refreshCounts();
+    }
+
+    function refreshCounts() {
+      const due = getDueReviewWords();
+      const learned = Object.keys(state.srs).length;
+      document.getElementById("dueWordsCount").textContent = String(due.length);
+      document.getElementById("learnedWordsCount").textContent = String(learned);
+
+      const hint = document.getElementById("srsScheduleHint");
+      if (hint) {
+        hint.textContent = due.length > 0
+          ? `ഇന്ന് ${due.length} ആവർത്തന വാക്കുകൾ (Review) തയ്യാറാണ് • +1, +3, +7, +14 ദിവസം.`
+          : "+1, +3, +7, +14 ദിവസ ഇടവേളകളിൽ വാക്കുകൾ വീണ്ടും ആവർത്തിക്കും.";
+      }
+
+      const filterBtn = document.getElementById("filterReviewBtn");
+      if (filterBtn) {
+        filterBtn.textContent = state.reviewOnly ? "Show All Day Words" : `🔁 Review Queue (${due.length})`;
+      }
+    }
+
+    function populateDayPicker() {
+      const select = document.getElementById("dayPicker");
+      if (!select) return;
+      select.innerHTML = "";
+      for (let d = 1; d <= 100; d++) {
+        const opt = document.createElement("option");
+        opt.value = String(d);
+        const doneMark = state.completedDays.includes(d) ? " ✓" : "";
+        const groupLabel = d <= 20 ? "Core" : "Daily Spoken";
+        opt.textContent = `Day ${d} • ${groupLabel}${doneMark}`;
+        select.appendChild(opt);
+      }
+      select.value = String(state.day);
+    }
+
+    function buildWordFallback(word) {
+      const box = document.createElement("div");
+      box.className = "w-16 h-16 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-700 flex flex-col items-center justify-center shrink-0";
+      box.innerHTML = `<span class="text-base font-extrabold">${word.en.slice(0, 2).toUpperCase()}</span><span class="text-[10px] font-semibold text-indigo-500">${word.pos}</span>`;
+      return box;
+    }
+
+    function renderWordsView() {
+      const grid = document.getElementById("wordsGrid");
+      const titleEl = document.getElementById("currentDayTitle");
+      if (!grid || !titleEl) return;
+
+      const dayList = CURRICULUM_100[state.day] || CURRICULUM_100[1];
+      const items = state.reviewOnly ? getDueReviewWords() : dayList;
+
+      titleEl.textContent = state.reviewOnly
+        ? `🔁 Review Queue (${items.length} വാക്കുകൾ)`
+        : `ദിവസം ${state.day} — ${state.day <= 20 ? "അടിസ്ഥാന വാക്കുകൾ" : "നിത്യസംസാര വാക്കുകൾ"}`;
+
+      const completeBtn = document.getElementById("completeDayBtn");
+      const completed = state.completedDays.includes(state.day);
+      completeBtn.textContent = completed ? "✓ ദിവസം പൂർത്തിയായി" : "✓ ദിവസം പൂർത്തിയാക്കുക";
+      completeBtn.className = completed
+        ? "no-print lexi-btn px-4 py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs sm:text-sm"
+        : "no-print lexi-btn px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm";
+
+      grid.innerHTML = "";
+
+      if (!items.length) {
+        grid.innerHTML = `
+          <div class="md:col-span-2 lexi-card p-8 text-center space-y-1.5">
+            <div class="text-sm font-extrabold text-slate-900">ഇന്ന് ആവർത്തിക്കാൻ വാക്കുകളൊന്നുമില്ല.</div>
+            <div class="text-xs text-slate-500">വാക്കുകൾ പഠിക്കുമ്പോൾ അവ നിശ്ചിത ദിവസങ്ങളിൽ ഇവിടെ വരും.</div>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach((word) => {
+        const due = isDueForReview(word.id);
+        const srsEntry = state.srs[word.id];
+
+        const card = document.createElement("article");
+        card.className = "lexi-card p-4 sm:p-5 flex flex-col justify-between gap-4";
+
+        const headerRow = document.createElement("div");
+        headerRow.className = "flex items-start justify-between gap-3";
+
+        const leftCol = document.createElement("div");
+        leftCol.className = "space-y-1";
+
+        const badgeRow = document.createElement("div");
+        badgeRow.className = "flex flex-wrap items-center gap-1.5";
+        badgeRow.innerHTML = `<span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-[11px] font-bold">Day ${word.day} • ${word.pos}</span>`;
+        if (due) {
+          badgeRow.innerHTML += `<span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200 text-[11px] font-extrabold">🔁 ആവർത്തന വാക്ക് / Review</span>`;
+        } else if (srsEntry && srsEntry.dueDate) {
+          badgeRow.innerHTML += `<span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-semibold">Next: ${srsEntry.dueDate}</span>`;
+        }
+
+        const wordHeading = document.createElement("div");
+        wordHeading.className = "pt-0.5";
+        wordHeading.innerHTML = `
+          <div class="text-xl font-extrabold text-slate-900">${word.en}</div>
+          <div class="text-sm font-bold text-indigo-600">${word.ml}</div>
+        `;
+
+        leftCol.appendChild(badgeRow);
+        leftCol.appendChild(wordHeading);
+        headerRow.appendChild(leftCol);
+
+        if (word.img) {
+          const img = document.createElement("img");
+          img.src = word.img;
+          img.alt = word.en;
+          img.loading = "lazy";
+          img.className = "w-16 h-16 rounded-xl object-cover border border-slate-200 shrink-0";
+          img.onerror = () => {
+            img.replaceWith(buildWordFallback(word));
+          };
+          headerRow.appendChild(img);
+        } else {
+          headerRow.appendChild(buildWordFallback(word));
+        }
+
+        // Interactive Tap-to-Spell Letter Blocks
+        const spellSection = document.createElement("div");
+        spellSection.className = "space-y-1.5";
+        spellSection.innerHTML = `<div class="text-[11px] font-bold text-slate-500">Tap letter blocks to spell</div>`;
+
+        const blocksRow = document.createElement("div");
+        blocksRow.className = "flex flex-wrap items-center gap-1.5";
+        word.en.split("").forEach((char) => {
+          if (char === " ") {
+            const spacer = document.createElement("span");
+            spacer.className = "w-2";
+            blocksRow.appendChild(spacer);
+            return;
+          }
+          const block = document.createElement("button");
+          block.type = "button";
+          block.textContent = char;
+          block.className = "letter-block w-8 h-8 sm:w-9 sm:h-9 text-xs sm:text-sm flex items-center justify-center";
+          block.addEventListener("click", () => {
+            speakText(char, "en-US");
+            block.classList.add("active-letter");
+            setTimeout(() => block.classList.remove("active-letter"), 220);
+          });
+          blocksRow.appendChild(block);
+        });
+        spellSection.appendChild(blocksRow);
+
+        // Example Sentence + Malayalam Translation
+        const exampleBox = document.createElement("div");
+        exampleBox.className = "p-3 rounded-xl bg-slate-50 border border-slate-200/80 space-y-0.5";
+        exampleBox.innerHTML = `
+          <div class="text-xs sm:text-sm font-bold text-slate-800">“${word.exEn}”</div>
+          <div class="text-xs text-slate-600">${word.exMl}</div>
+        `;
+
+        // Controls
+        const actionRow = document.createElement("div");
+        actionRow.className = "flex flex-wrap items-center gap-2 pt-1";
+
+        const wordAudioBtn = document.createElement("button");
+        wordAudioBtn.type = "button";
+        wordAudioBtn.textContent = "🔊 Word";
+        wordAudioBtn.className = "lexi-btn px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs";
+        wordAudioBtn.addEventListener("click", () => {
+          speakText(word.en, "en-US");
+          updateWordSrs(word.id, true);
+          renderWordsView();
+        });
+
+        const sentenceAudioBtn = document.createElement("button");
+        sentenceAudioBtn.type = "button";
+        sentenceAudioBtn.textContent = "🗣️ Sentence";
+        sentenceAudioBtn.className = "lexi-btn px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 text-xs";
+        sentenceAudioBtn.addEventListener("click", () => {
+          speakText(word.exEn, "en-US");
+          updateWordSrs(word.id, true);
+          renderWordsView();
+        });
+
+        const markLearnedBtn = document.createElement("button");
+        markLearnedBtn.type = "button";
+        markLearnedBtn.textContent = srsEntry ? "✓ In Review Queue" : "✓ Mark Learned";
+        markLearnedBtn.className = srsEntry
+          ? "lexi-btn px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs"
+          : "lexi-btn px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs";
+        markLearnedBtn.addEventListener("click", () => {
+          updateWordSrs(word.id, true);
+          showBanner(`"${word.en}" ആവർത്തന ഷെഡ്യൂളിൽ ചേർത്തു`);
+          renderWordsView();
+        });
+
+        actionRow.appendChild(wordAudioBtn);
+        actionRow.appendChild(sentenceAudioBtn);
+        actionRow.appendChild(markLearnedBtn);
+
+        const contentStack = document.createElement("div");
+        contentStack.className = "space-y-3";
+        contentStack.appendChild(headerRow);
+        contentStack.appendChild(spellSection);
+        contentStack.appendChild(exampleBox);
+
+        card.appendChild(contentStack);
+        card.appendChild(actionRow);
+        grid.appendChild(card);
+      });
+    }
+
+    // Falling Balloon Word Rescue
+    function stopBalloonRescue() {
+      rescueRunning = false;
+      clearTimeout(rescueSpawnTimer);
+      if (rescueRafId) {
+        cancelAnimationFrame(rescueRafId);
+        rescueRafId = null;
+      }
+    }
+
+    function clearStageBalloons() {
+      const stage = document.getElementById("rescueStage");
+      if (!stage) return;
+      stage.querySelectorAll(".rescue-balloon").forEach((node) => node.remove());
+      activeBalloons = [];
+    }
+
+    function updateRescueScoreboard() {
+      document.getElementById("balloonRescuedCount").textContent = String(state.stats.rescued);
+      document.getElementById("balloonMissedCount").textContent = String(state.stats.missed);
+    }
+
+    function selectTargetPrompt() {
+      const due = getDueReviewWords();
+      const dayPool = CURRICULUM_100[state.day] || CURRICULUM_100[1];
+
+      if (state.balloonReviewOnly && due.length) {
+        currentTargetWord = due[Math.floor(Math.random() * due.length)];
+      } else if (due.length && Math.random() < 0.45) {
+        currentTargetWord = due[Math.floor(Math.random() * due.length)];
+      } else {
+        currentTargetWord = dayPool[Math.floor(Math.random() * dayPool.length)];
+      }
+
+      const reviewBadge = document.getElementById("balloonReviewBadge");
+      if (reviewBadge) reviewBadge.classList.toggle("hidden", !isDueForReview(currentTargetWord.id));
+
+      const targetEl = document.getElementById("balloonTargetText");
+      if (targetEl) {
+        targetEl.textContent = state.promptLang === "en" ? currentTargetWord.en : currentTargetWord.ml;
+      }
+    }
+
+    function spawnFallingBalloon() {
+      if (!rescueRunning) return;
+      const stage = document.getElementById("rescueStage");
+      if (!stage) return;
+      if (!currentTargetWord) selectTargetPrompt();
+
+      const stageWidth = stage.clientWidth || 360;
+      const pool = CURRICULUM_100[state.day] || CURRICULUM_100[1];
+      const targetPresent = activeBalloons.some((b) => b.word.id === currentTargetWord.id && !b.done);
+      const chosenWord = !targetPresent
+        ? currentTargetWord
+        : pool[Math.floor(Math.random() * pool.length)];
+
+      const label = state.promptLang === "en" ? chosenWord.ml : chosenWord.en;
+      const el = document.createElement("button");
+      el.type = "button";
+      el.className = "rescue-balloon";
+      el.textContent = label;
+      el.style.backgroundColor = BALLOON_PALETTE[Math.floor(Math.random() * BALLOON_PALETTE.length)];
+
+      const estWidth = Math.min(176, Math.max(112, label.length * 9 + 28));
+      const maxX = Math.max(8, stageWidth - estWidth - 8);
+      const xPos = Math.floor(Math.random() * maxX);
+      el.style.left = `${xPos}px`;
+      el.style.transform = "translate3d(0, -50px, 0)";
+
+      const entry = {
+        el,
+        word: chosenWord,
+        y: -50,
+        speed: 46 + Math.random() * 20,
+        done: false
+      };
+
+      el.addEventListener("click", () => {
+        if (!rescueRunning || entry.done) return;
+        entry.done = true;
+
+        if (chosenWord.id === currentTargetWord.id) {
+          state.stats.rescued += 1;
+          updateWordSrs(chosenWord.id, true);
+          playCue(true);
+          speakText(chosenWord.en, "en-US");
+          el.classList.add("rescued-pop");
+          setTimeout(() => el.remove(), 170);
+          activeBalloons = activeBalloons.filter((b) => b !== entry);
+          updateRescueScoreboard();
+          saveState();
+          selectTargetPrompt();
+        } else {
+          playCue(false);
+          el.style.opacity = "0.35";
+          setTimeout(() => el.remove(), 140);
+          activeBalloons = activeBalloons.filter((b) => b !== entry);
+        }
+      });
+
+      stage.appendChild(el);
+      activeBalloons.push(entry);
+      rescueSpawnTimer = setTimeout(spawnFallingBalloon, 1300);
+    }
+
+    function animateRescueStage(timestamp) {
+      if (!rescueRunning) return;
+      if (!prevFrameTime) prevFrameTime = timestamp;
+      const delta = Math.min(0.05, (timestamp - prevFrameTime) / 1000);
+      prevFrameTime = timestamp;
+
+      const stage = document.getElementById("rescueStage");
+      const floorY = (stage ? stage.clientHeight : 360) - 52;
+
+      const remaining = [];
+      for (const b of activeBalloons) {
+        if (b.done) continue;
+        b.y += b.speed * delta;
+        b.el.style.transform = `translate3d(0, ${b.y}px, 0)`;
+
+        if (b.y >= floorY) {
+          b.done = true;
+          b.el.remove();
+          if (currentTargetWord && b.word.id === currentTargetWord.id) {
+            state.stats.missed += 1;
+            updateWordSrs(b.word.id, false);
+            playCue(false);
+            showBanner(`Missed: ${b.word.en} (${b.word.ml})`, true);
+            updateRescueScoreboard();
+            saveState();
+            selectTargetPrompt();
+          }
+        } else {
+          remaining.push(b);
+        }
+      }
+      activeBalloons = remaining;
+      rescueRafId = requestAnimationFrame(animateRescueStage);
+    }
+
+    function startBalloonRescue() {
+      stopBalloonRescue();
+      clearStageBalloons();
+      selectTargetPrompt();
+      updateRescueScoreboard();
+      rescueRunning = true;
+      prevFrameTime = 0;
+      spawnFallingBalloon();
+      rescueRafId = requestAnimationFrame(animateRescueStage);
+    }
+
+    function switchAppMode(targetMode) {
+      state.mode = targetMode;
+      saveState();
+
+      const wordsTab = document.getElementById("tabWordsBtn");
+      const balloonTab = document.getElementById("tabBalloonBtn");
+      const wordsSec = document.getElementById("wordsSection");
+      const balloonSec = document.getElementById("balloonSection");
+
+      if (targetMode === "balloon") {
+        wordsSec.classList.add("hidden");
+        balloonSec.classList.remove("hidden");
+        balloonTab.className = "lexi-btn px-3.5 py-1.5 bg-white text-indigo-700 shadow-xs text-xs sm:text-sm";
+        wordsTab.className = "lexi-btn px-3.5 py-1.5 text-slate-600 hover:text-slate-900 text-xs sm:text-sm";
+        startBalloonRescue();
+      } else {
+        stopBalloonRescue();
+        clearStageBalloons();
+        balloonSec.classList.add("hidden");
+        wordsSec.classList.remove("hidden");
+        wordsTab.className = "lexi-btn px-3.5 py-1.5 bg-white text-indigo-700 shadow-xs text-xs sm:text-sm";
+        balloonTab.className = "lexi-btn px-3.5 py-1.5 text-slate-600 hover:text-slate-900 text-xs sm:text-sm";
+        renderWordsView();
+      }
+    }
+
+    function openDay20Certificate() {
+      document.getElementById("certStudentName").textContent = (state.studentName || "").trim() || "പ്രിയ കുട്ടി";
+      document.getElementById("certLearnedCount").textContent = String(Object.keys(state.srs).length);
+      document.getElementById("certCompletedCount").textContent = `${Math.min(20, state.completedDays.length)} / 20`;
+      document.getElementById("certIssuedDate").textContent = getTodayDateStr();
+      document.getElementById("day20CertModal").classList.remove("hidden");
+    }
+
+    function setupPwaSupport() {
+      try {
+        const iconSvg = encodeURIComponent(
+          "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='24' fill='%234f46e5'/><text x='64' y='77' text-anchor='middle' font-size='48' font-weight='800' fill='%23ffffff' font-family='sans-serif'>LP</text></svg>"
+        );
+        const manifestObj = {
+          name: "LexiPath Kids — 100-Day Vocabulary",
+          short_name: "LexiPath Kids",
+          start_url: ".",
+          display: "standalone",
+          background_color: "#f8fafc",
+          theme_color: "#4f46e5",
+          icons: [{ src: `data:image/svg+xml,${iconSvg}`, sizes: "128x128", type: "image/svg+xml" }]
+        };
+        const blob = new Blob([JSON.stringify(manifestObj)], { type: "application/manifest+json" });
+        document.getElementById("dynamicManifestLink").href = URL.createObjectURL(blob);
+      } catch (err) {
+        // Graceful fallback when blob manifest isn't available
+      }
+
+      if ("serviceWorker" in navigator) {
+        const swCode = `
+          self.addEventListener("install", () => self.skipWaiting());
+          self.addEventListener("activate", (event) => event.waitUntil(self.clients.claim()));
+          self.addEventListener("fetch", (event) => {
+            if (event.request.method !== "GET") return;
+            event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+          });
+        `;
+        try {
+          const swBlob = new Blob([swCode], { type: "application/javascript" });
+          navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+        } catch (err) {
+          // Graceful fallback when service worker registration is restricted
+        }
+      }
+
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+      });
+
+      const installModal = document.getElementById("installHelpModal");
+      document.getElementById("installPwaBtn").addEventListener("click", async () => {
+        if (deferredInstallPrompt) {
+          deferredInstallPrompt.prompt();
+          await deferredInstallPrompt.userChoice;
+          deferredInstallPrompt = null;
+        } else {
+          installModal.classList.remove("hidden");
+        }
+      });
+      document.getElementById("closeInstallModalBtn").addEventListener("click", () => installModal.classList.add("hidden"));
+      document.getElementById("confirmInstallModalBtn").addEventListener("click", () => installModal.classList.add("hidden"));
+    }
+
+    function connectFirebase() {
+      rtdbRef = null;
+      firestoreDocRef = null;
+      const cfg = state.firebase || {};
+      if (!cfg.apiKey || !cfg.projectId) return;
+
+      try {
+        const app = initializeApp({
+          apiKey: cfg.apiKey,
+          projectId: cfg.projectId,
+          databaseURL: cfg.databaseURL || undefined
+        }, "lexipath_sync_app");
+
+        const profileKey = (state.studentName || "learner").trim().toLowerCase().replace(/[^a-z0-9_]/g, "_") || "learner";
+
+        if (cfg.backend === "firestore") {
+          const db = getFirestore(app);
+          firestoreDocRef = doc(db, "lexipath_kids", profileKey);
+          onSnapshot(firestoreDocRef, (snap) => {
+            if (!snap.exists()) return;
+            const remote = snap.data();
+            if (remote && remote.srs) {
+              state.srs = { ...remote.srs, ...state.srs };
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+              refreshCounts();
+              if (state.mode === "words") renderWordsView();
+            }
+          });
+        } else if (cfg.databaseURL) {
+          const rtdb = getDatabase(app);
+          rtdbRef = ref(rtdb, `lexipath-kids/${profileKey}`);
+          onValue(rtdbRef, (snap) => {
+            const remote = snap.val();
+            if (remote && remote.srs) {
+              state.srs = { ...remote.srs, ...state.srs };
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+              refreshCounts();
+              if (state.mode === "words") renderWordsView();
+            }
+          });
+        }
+      } catch (err) {
+        // Keep localStorage working smoothly
+      }
+    }
+
+    function syncToFirebase() {
+      const payload = {
+        studentName: state.studentName || "",
+        day: state.day,
+        completedDays: state.completedDays,
+        srs: state.srs,
+        stats: state.stats,
+        updatedAt: Date.now()
+      };
+      try {
+        if (state.firebase.backend === "firestore" && firestoreDocRef) {
+          setDoc(firestoreDocRef, payload, { merge: true }).catch(() => {});
+        } else if (rtdbRef) {
+          set(rtdbRef, payload).catch(() => {});
+        }
+      } catch (err) {
+        // Ignore cloud write error
+      }
+    }
+
+    function bindAllEvents() {
+      document.getElementById("closeBannerBtn").addEventListener("click", () => {
+        document.getElementById("lexiBanner").classList.add("hidden");
+      });
+
+      const nameInput = document.getElementById("studentNameInput");
+      nameInput.value = state.studentName || "";
+      nameInput.addEventListener("input", (e) => {
+        state.studentName = e.target.value;
+        saveState();
+      });
+
+      document.getElementById("dayPicker").addEventListener("change", (e) => {
+        state.day = Math.min(100, Math.max(1, Number(e.target.value) || 1));
+        state.reviewOnly = false;
+        saveState();
+        refreshCounts();
+        if (state.mode === "balloon") startBalloonRescue();
+        else renderWordsView();
+      });
+
+      document.getElementById("prevDayBtn").addEventListener("click", () => {
+        if (state.day > 1) {
+          state.day -= 1;
+          state.reviewOnly = false;
+          populateDayPicker();
+          saveState();
+          refreshCounts();
+          if (state.mode === "balloon") startBalloonRescue();
+          else renderWordsView();
+        }
+      });
+
+      document.getElementById("nextDayBtn").addEventListener("click", () => {
+        if (state.day < 100) {
+          state.day += 1;
+          state.reviewOnly = false;
+          populateDayPicker();
+          saveState();
+          refreshCounts();
+          if (state.mode === "balloon") startBalloonRescue();
+          else renderWordsView();
+        }
+      });
+
+      document.getElementById("tabWordsBtn").addEventListener("click", () => switchAppMode("words"));
+      document.getElementById("tabBalloonBtn").addEventListener("click", () => switchAppMode("balloon"));
+
+      document.getElementById("filterReviewBtn").addEventListener("click", () => {
+        state.reviewOnly = !state.reviewOnly;
+        saveState();
+        refreshCounts();
+        switchAppMode("words");
+      });
+
+      document.getElementById("startReviewBalloonBtn").addEventListener("click", () => {
+        state.balloonReviewOnly = true;
+        saveState();
+        switchAppMode("balloon");
+      });
+
+      document.getElementById("completeDayBtn").addEventListener("click", () => {
+        const d = state.day;
+        if (!state.completedDays.includes(d)) {
+          state.completedDays.push(d);
+          (CURRICULUM_100[d] || []).forEach((w) => {
+            if (!state.srs[w.id]) {
+              state.srs[w.id] = {
+                count: 1,
+                stage: 0,
+                lastReviewed: getTodayDateStr(),
+                dueDate: addDaysToDateStr(getTodayDateStr(), SRS_DAYS[0])
+              };
+            }
+          });
+          saveState(`ദിവസം ${d} പൂർത്തിയായി സേവ് ചെയ്തു!`);
+          populateDayPicker();
+          refreshCounts();
+          renderWordsView();
+          if (d === 20) openDay20Certificate();
+        }
+      });
+
+      document.getElementById("openCertModalBtn").addEventListener("click", openDay20Certificate);
+      document.getElementById("closeCertModalBtn").addEventListener("click", () => {
+        document.getElementById("day20CertModal").classList.add("hidden");
+      });
+      document.getElementById("printCertBtn").addEventListener("click", () => window.print());
+
+      const fbModal = document.getElementById("firebaseConfigModal");
+      document.getElementById("openFirebaseBtn").addEventListener("click", () => {
+        document.getElementById("fbBackendSelect").value = state.firebase.backend || "rtdb";
+        document.getElementById("fbApiKeyInput").value = state.firebase.apiKey || "";
+        document.getElementById("fbProjectIdInput").value = state.firebase.projectId || "";
+        document.getElementById("fbDatabaseUrlInput").value = state.firebase.databaseURL || "";
+        fbModal.classList.remove("hidden");
+      });
+      document.getElementById("closeFirebaseModalBtn").addEventListener("click", () => fbModal.classList.add("hidden"));
+      document.getElementById("saveFirebaseBtn").addEventListener("click", () => {
+        state.firebase = {
+          backend: document.getElementById("fbBackendSelect").value,
+          apiKey: document.getElementById("fbApiKeyInput").value.trim(),
+          projectId: document.getElementById("fbProjectIdInput").value.trim(),
+          databaseURL: document.getElementById("fbDatabaseUrlInput").value.trim()
+        };
+        connectFirebase();
+        saveState("Firebase sync settings saved");
+        fbModal.classList.add("hidden");
+      });
+      document.getElementById("clearFirebaseBtn").addEventListener("click", () => {
+        state.firebase = { backend: "rtdb", apiKey: "", projectId: "", databaseURL: "" };
+        rtdbRef = null;
+        firestoreDocRef = null;
+        saveState("Firebase sync cleared");
+        fbModal.classList.add("hidden");
+      });
+
+      const langPicker = document.getElementById("promptLangPicker");
+      langPicker.value = state.promptLang || "ml";
+      langPicker.addEventListener("change", (e) => {
+        state.promptLang = e.target.value;
+        saveState();
+        if (state.mode === "balloon") startBalloonRescue();
+      });
+
+      document.getElementById("playBalloonBtn").addEventListener("click", () => {
+        state.balloonReviewOnly = false;
+        startBalloonRescue();
+      });
+
+      document.getElementById("pauseBalloonBtn").addEventListener("click", () => {
+        stopBalloonRescue();
+        showBanner("Balloon Word Rescue paused");
+      });
+
+      document.getElementById("resetAllBtn").addEventListener("click", () => {
+        stopBalloonRescue();
+        clearStageBalloons();
+        const savedName = state.studentName;
+        const savedFb = state.firebase;
+        state = createInitialState();
+        state.studentName = savedName;
+        state.firebase = savedFb;
+        saveState("Progress reset");
+        populateDayPicker();
+        refreshCounts();
+        updateRescueScoreboard();
+        renderWordsView();
+      });
+    }
+
+    setupPwaSupport();
+    populateDayPicker();
+    bindAllEvents();
+    refreshCounts();
+    updateRescueScoreboard();
+    connectFirebase();
+
+    if (state.mode === "balloon") {
+      switchAppMode("balloon");
+    } else {
+      renderWordsView();
+    }
+  </script>
+</body>
+</html>
